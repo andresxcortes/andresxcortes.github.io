@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 interface Props {
   heading?: string;
 }
@@ -13,8 +15,12 @@ const { heading = "Let's talk" } = Astro.props;
       <p>Fractional CISO, regulatory &amp; VASP readiness, ISO 27001 / SOC 2, or a specific security problem.</p>
     </slot>
     <ul class="links">
-      <li><a href="mailto:andres.x.cortes@gmail.com">andres.x.cortes@gmail.com</a></li>
-      <li><a href="https://linkedin.com/in/andresxcortes" rel="noopener">linkedin.com/in/andresxcortes</a></li>
+      <li>
+        <a href="mailto:andres.x.cortes@gmail.com"><Icon name="gmail" /> andres.x.cortes@gmail.com</a>
+      </li>
+      <li>
+        <a href="https://linkedin.com/in/andresxcortes" rel="noopener"><Icon name="linkedin" /> linkedin.com/in/andresxcortes</a>
+      </li>
     </ul>
   </div>
 </section>
@@ -49,6 +55,9 @@ const { heading = "Let's talk" } = Astro.props;
   }
 
   a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     color: #fff;
     overflow-wrap: anywhere;
   }

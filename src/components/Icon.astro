@@ -1,0 +1,48 @@
+---
+// Outline icons from Tabler Icons (MIT, https://tabler.io/icons), inlined so no external requests.
+interface Props {
+  name: 'gmail' | 'linkedin';
+  size?: number;
+}
+
+const { name, size = 20 } = Astro.props;
+
+const paths: Record<Props['name'], string[]> = {
+  gmail: [
+    'M16 20h3a1 1 0 0 0 1 -1v-14a1 1 0 0 0 -1 -1h-3v16',
+    'M5 20h3v-16h-3a1 1 0 0 0 -1 1v14a1 1 0 0 0 1 1',
+    'M16 4l-4 4l-4 -4',
+    'M4 6.5l8 7.5l8 -7.5',
+  ],
+  linkedin: [
+    'M8 11v5',
+    'M8 8v.01',
+    'M12 16v-5',
+    'M16 16v-3a2 2 0 1 0 -4 0',
+    'M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10',
+  ],
+};
+---
+
+<svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {paths[name].map((d) => <path d={d} />)}
+</svg>
+
+<style>
+  .icon {
+    flex-shrink: 0;
+    vertical-align: -0.2em;
+  }
+</style>

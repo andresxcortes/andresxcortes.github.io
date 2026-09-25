@@ -2,6 +2,7 @@
 import '@fontsource-variable/inter';
 import '@fontsource-variable/space-grotesk';
 import '../styles/global.css';
+import Icon from '../components/Icon.astro';
 
 interface Props {
   title: string;
@@ -92,12 +93,14 @@ const isCurrent = (href: string) =>
     <footer class="site-footer">
       <div class="container">
         <p>© {new Date().getFullYear()} Andrés Cortés · Virtual CISO &amp; Security Advisory</p>
-        <p>
-          <a href="mailto:andres.x.cortes@gmail.com">andres.x.cortes@gmail.com</a>{' · '}<a
-            href="https://linkedin.com/in/andresxcortes"
-            rel="noopener">LinkedIn</a
-          >
-        </p>
+        <ul class="footer-links">
+          <li>
+            <a href="mailto:andres.x.cortes@gmail.com"><Icon name="gmail" size={16} /> andres.x.cortes@gmail.com</a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/andresxcortes" rel="noopener"><Icon name="linkedin" size={16} /> LinkedIn</a>
+          </li>
+        </ul>
       </div>
     </footer>
   </body>
@@ -161,5 +164,20 @@ const isCurrent = (href: string) =>
 
   .site-footer p {
     margin: 0.25rem 0;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
   }
 </style>

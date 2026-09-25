@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroBand from '../components/HeroBand.astro';
+import Icon from '../components/Icon.astro';
 ---
 
 <BaseLayout
@@ -18,11 +19,11 @@ import HeroBand from '../components/HeroBand.astro';
     <section class="section section--end">
       <ul class="channels">
         <li>
-          <span class="label">Email</span>
+          <span class="label"><Icon name="gmail" /> Email</span>
           <a href="mailto:andres.x.cortes@gmail.com">andres.x.cortes@gmail.com</a>
         </li>
         <li>
-          <span class="label">LinkedIn</span>
+          <span class="label"><Icon name="linkedin" /> LinkedIn</span>
           <a href="https://linkedin.com/in/andresxcortes" rel="noopener">linkedin.com/in/andresxcortes</a>
         </li>
       </ul>
@@ -52,6 +53,9 @@ import HeroBand from '../components/HeroBand.astro';
   }
 
   .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     font-family: var(--font-heading);
     font-weight: 600;
     color: var(--accent-dark);
