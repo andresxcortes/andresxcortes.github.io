@@ -2,6 +2,7 @@
 title: "RG 1058/2025 → ISO 27001:2022 — VASP Control Crosswalk"
 summary: "Argentina's Virtual Asset Service Provider framework (CNV RG 1058/2025) mapped article-by-article to ISO/IEC 27001:2022 controls — a sample of the full crosswalk."
 type: "resource"
+date: 2026-01-01
 featured: true
 draft: false
 ---
