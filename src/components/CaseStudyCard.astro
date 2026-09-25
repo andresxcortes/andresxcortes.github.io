@@ -6,14 +6,18 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, sector, stage, region, summary, outcome, draft } = entry.data;
+const { title, sector, stage, region, summary, outcome, draft, client_named, organization, role } =
+  entry.data;
+const org = client_named ? organization : undefined;
 ---
 
 <article class="card">
   <p class="meta">
     {draft && <span class="draft">Draft</span>}
+    {org && <strong class="org">{org} · </strong>}
     {sector} · {stage} · {region.join(' / ')}
   </p>
+  {role && <p class="role">{role}</p>}
   <h3><a href={`/portfolio/${entry.id}`}>{title}</a></h3>
   <p class="summary">{summary}</p>
   <p class="outcome"><strong>Outcome:</strong> {outcome}</p>
@@ -40,6 +44,17 @@ const { title, sector, stage, region, summary, outcome, draft } = entry.data;
     margin: 0;
     font-size: 0.85rem;
     color: var(--muted);
+  }
+
+  .org {
+    color: var(--accent-dark);
+  }
+
+  .role {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-dark);
   }
 
   .draft {

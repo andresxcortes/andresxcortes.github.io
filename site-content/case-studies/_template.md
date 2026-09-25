@@ -9,7 +9,9 @@ services: ["vCISO", "ISO 27001 & SOC 2"]   # tags from the Services page
 summary: "One or two sentences for the portfolio index card."
 outcome: "The result in one line (e.g. 'Certified in 7 months, no release slowdown')."
 date: 2026-01-01
-client_named: false              # true ONLY with written permission
+client_named: false              # true ONLY with written permission (or a former employer)
+# organization: "Name"            # shown only when client_named: true
+# role: "Fractional CISO"         # your role, e.g. advisory vs. in-house
 featured: false
 draft: false
 ---

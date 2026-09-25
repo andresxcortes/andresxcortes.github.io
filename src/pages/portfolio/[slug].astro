@@ -15,12 +15,27 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, sector, stage, region, services, summary, outcome, date, draft } = entry.data;
+const {
+  title,
+  sector,
+  stage,
+  region,
+  services,
+  summary,
+  outcome,
+  date,
+  draft,
+  client_named,
+  organization,
+  role,
+} = entry.data;
+const org = client_named ? organization : undefined;
+const subtitle = [org, sector, stage, region.join(' / ')].filter(Boolean).join(' · ');
 const { Content } = await render(entry);
 ---
 
 <BaseLayout title={`${title} — Andrés Cortés`} description={summary}>
-  <HeroBand title={title} subtitle={`${sector} · ${stage} · ${region.join(' / ')}`} />
+  <HeroBand title={title} subtitle={subtitle} />
 
   <div class="container">
     {draft && <p class="draft-note">Draft — visible only in local dev, not published.</p>}
@@ -31,6 +46,14 @@ const { Content } = await render(entry);
           <dt>Outcome</dt>
           <dd>{outcome}</dd>
         </div>
+        {
+          role && (
+            <div>
+              <dt>Role</dt>
+              <dd>{role}</dd>
+            </div>
+          )
+        }
         {
           services.length > 0 && (
             <div>

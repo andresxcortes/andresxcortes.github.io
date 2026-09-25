@@ -1,6 +1,6 @@
 ---
-# EXAMPLE — illustrative only. Andrés: review, adjust to what you're comfortable
-# stating publicly, and confirm nothing here identifies a client or breaches an NDA.
+# Former employer (in-house role), named with Andrés's approval. No confidential detail:
+# keep it to method and outcomes that are already public.
 title: "Standing up VASP compliance under a new national framework"
 sector: "Crypto exchange"
 stage: "Enterprise / market leader (LatAm)"
@@ -9,13 +9,15 @@ services: ["LatAm Regulatory & VASP Compliance", "Security PMO & GRC Design", "I
 summary: "Led the security and compliance workstream to meet a new Virtual Asset Service Provider framework on a regulator deadline, alongside an ISO 27001 certification."
 outcome: "Evidence packages delivered within regulator deadlines; ISO 27001 achieved without slowing product releases."
 date: 2025-06-01
-client_named: false
+client_named: true
+organization: "Bitso"
+role: "Argentina CISO & Information Security PMO Manager (in-house)"
 featured: true
-draft: true                      # keep true until Andrés validates it for public release
+draft: false
 ---
 
 ## Context
-A leading Latin American crypto exchange operating under a newly regulated national regime, where a virtual-asset licensing/registration framework and formal security expectations came into force on fixed regulator deadlines.
+Bitso, Latin America's largest crypto exchange, where I served in-house as Argentina CISO and Information Security PMO Manager. The Argentine operation came under a newly regulated national regime, where a virtual-asset licensing/registration framework (CNV RG 1058/2025) and formal security expectations came into force on fixed regulator deadlines.
 
 ## Problem
 The organization had to translate a fresh regulatory framework into operational controls and produce regulator-ready evidence — while simultaneously pursuing an ISO 27001 certification, and without stalling a fast product-release cadence. Missing the deadlines carried registration and reputational risk.
