@@ -18,7 +18,7 @@ const org = client_named ? organization : undefined;
     {sector} · {stage} · {region.join(' / ')}
   </p>
   {role && <p class="role">{role}</p>}
-  <h3><a href={`/portfolio/${entry.id}`}>{title}</a></h3>
+  <h3><a href={`/portfolio/${entry.id}/`}>{title}</a></h3>
   <p class="summary">{summary}</p>
   <p class="outcome"><strong>Outcome:</strong> {outcome}</p>
 </article>

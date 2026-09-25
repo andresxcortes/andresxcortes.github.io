@@ -8,12 +8,28 @@ import CaseStudyCard from '../components/CaseStudyCard.astro';
 import { getCaseStudies } from '../lib/case-studies';
 
 const featured = (await getCaseStudies()).filter((c) => c.data.featured).slice(0, 2);
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Andrés Cortés',
+  jobTitle: 'Virtual CISO & Security Advisor',
+  description:
+    'Fractional CISO and security advisory for fintech and crypto teams across Latin America.',
+  url: Astro.site?.href,
+  email: 'mailto:andres.x.cortes@gmail.com',
+  sameAs: ['https://linkedin.com/in/andresxcortes'],
+  address: { '@type': 'PostalAddress', addressLocality: 'Buenos Aires', addressCountry: 'AR' },
+  knowsLanguage: ['es', 'en', 'pt', 'de'],
+};
 ---
 
 <BaseLayout
   title="Andrés Cortés — Virtual CISO & Security Advisory"
   description="Fractional CISO and security advisory for fintech and crypto teams across Latin America — regulatory, GRC, and audit-ready security."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(person)} />
+
   <HeroBand
     title="Andrés Cortés"
     subtitle="Virtual CISO & Security Advisory · Fintech & Crypto · Latin America"
@@ -34,9 +50,9 @@ const featured = (await getCaseStudies()).filter((c) => c.data.featured).slice(0
         across <strong>Argentina, Mexico, and Brazil</strong>.
       </p>
       <ul class="link-row">
-        <li><a href="/services">See services →</a></li>
-        <li><a href="/regulatory-coverage">Regulatory coverage →</a></li>
-        <li><a href="/contact">Let's talk →</a></li>
+        <li><a href="/services/">See services →</a></li>
+        <li><a href="/regulatory-coverage/">Regulatory coverage →</a></li>
+        <li><a href="/contact/">Let's talk →</a></li>
       </ul>
     </section>
 
@@ -59,7 +75,7 @@ const featured = (await getCaseStudies()).filter((c) => c.data.featured).slice(0
       <ul class="teaser-list">
         {services.map((s) => <li>{s.title}</li>)}
       </ul>
-      <p><a class="more" href="/services">All services and engagement models →</a></p>
+      <p><a class="more" href="/services/">All services and engagement models →</a></p>
     </section>
 
     <section class="section">
@@ -72,12 +88,12 @@ const featured = (await getCaseStudies()).filter((c) => c.data.featured).slice(0
         {
           markets.map((m) => (
             <li>
-              <a href="/regulatory-coverage">{m.name}</a>
+              <a href="/regulatory-coverage/">{m.name}</a>
             </li>
           ))
         }
       </ul>
-      <p><a class="more" href="/regulatory-coverage">See the full matrix →</a></p>
+      <p><a class="more" href="/regulatory-coverage/">See the full matrix →</a></p>
     </section>
 
     {
@@ -92,7 +108,7 @@ const featured = (await getCaseStudies()).filter((c) => c.data.featured).slice(0
             ))}
           </ul>
           <p>
-            <a class="more" href="/portfolio">All case studies →</a>
+            <a class="more" href="/portfolio/">All case studies →</a>
           </p>
         </section>
       )

@@ -32,3 +32,6 @@ Copiá `site-content/case-studies/_template.md`, completá el frontmatter y las 
 
 ## Recordatorio
 Repo público = zona sin datos de clientes. Ante la duda, anonimizá.
+
+## Imagen para compartir (OG) e ícono
+`public/og.png` (la vista previa en LinkedIn) y `public/apple-touch-icon.png` salen de `scripts/og/*.html`. Si cambiás el texto, regeneralos con `npm run og` (usa Google Chrome en modo headless). LinkedIn cachea la vista previa: para refrescarla usá el [Post Inspector](https://www.linkedin.com/post-inspector/).

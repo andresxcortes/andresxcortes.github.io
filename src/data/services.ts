@@ -15,7 +15,7 @@ export const services: Service[] = [
     title: 'LatAm Regulatory & VASP Compliance',
     description:
       'Licensing and registration readiness, control mapping, and regulator-ready evidence packages across Argentina, Mexico, and Brazil fintech and crypto frameworks.',
-    link: { href: '/regulatory-coverage', label: 'See regulatory coverage →' },
+    link: { href: '/regulatory-coverage/', label: 'See regulatory coverage →' },
   },
   {
     title: 'ISO 27001 & SOC 2 Readiness',

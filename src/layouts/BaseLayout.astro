@@ -6,23 +6,28 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  type?: 'website' | 'article';
+  /** Path under public/ for the social preview image. */
+  image?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, type = 'website', image = '/og.png' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
 
 const nav = [
   { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services' },
-  { href: '/regulatory-coverage', label: 'Regulatory Coverage' },
-  { href: '/portfolio', label: 'Portfolio' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/services/', label: 'Services' },
+  { href: '/regulatory-coverage/', label: 'Regulatory Coverage' },
+  { href: '/portfolio/', label: 'Portfolio' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
 ];
 
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const strip = (p: string) => p.replace(/\/$/, '') || '/';
+const path = strip(Astro.url.pathname);
 const isCurrent = (href: string) =>
-  href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`);
+  href === '/' ? path === '/' : path === strip(href) || path.startsWith(href);
 ---
 
 <html lang="en">
@@ -30,9 +35,35 @@ const isCurrent = (href: string) =>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0E5C63" />
+    <meta name="generator" content={Astro.generator} />
+
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Andrés Cortés" />
+
+    <!-- Open Graph (LinkedIn, Slack, WhatsApp...) -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Andrés Cortés" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Andrés Cortés — Virtual CISO · Fintech & Crypto · LatAm" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <slot name="head" />
   </head>
   <body>
     <header class="site-header">

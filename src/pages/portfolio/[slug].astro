@@ -34,7 +34,7 @@ const subtitle = [org, sector, stage, region.join(' / ')].filter(Boolean).join('
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={`${title} — Andrés Cortés`} description={summary}>
+<BaseLayout title={`${title} — Andrés Cortés`} description={summary} type="article">
   <HeroBand title={title} subtitle={subtitle} />
 
   <div class="container">
@@ -79,7 +79,7 @@ const { Content } = await render(entry);
       <div class="prose case-body">
         <Content />
       </div>
-      <p><a class="back" href="/portfolio">← All case studies</a></p>
+      <p><a class="back" href="/portfolio/">← All case studies</a></p>
     </section>
   </div>
 
