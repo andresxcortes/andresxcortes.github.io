@@ -3,7 +3,13 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroBand from '../../components/HeroBand.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { formatDate, getCaseStudies, type CaseStudy } from '../../lib/case-studies';
+import {
+  contextLine,
+  formatDate,
+  getCaseStudies,
+  typeLabels,
+  type CaseStudy,
+} from '../../lib/case-studies';
 
 export async function getStaticPaths() {
   const cases = await getCaseStudies();
@@ -15,22 +21,12 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const {
-  title,
-  sector,
-  stage,
-  region,
-  services,
-  summary,
-  outcome,
-  date,
-  draft,
-  client_named,
-  organization,
-  role,
-} = entry.data;
-const org = client_named ? organization : undefined;
-const subtitle = [org, sector, stage, region.join(' / ')].filter(Boolean).join(' · ');
+const { type, title, services, summary, outcome, date, draft, role, authors, status, language } =
+  entry.data;
+const subtitle = [type === 'engagement' ? undefined : typeLabels[type], status, contextLine(entry.data)]
+  .filter(Boolean)
+  .join(' · ');
+const hasFacts = Boolean(outcome || role || authors || services.length || date || language);
 const { Content } = await render(entry);
 ---
 
@@ -40,12 +36,17 @@ const { Content } = await render(entry);
   <div class="container">
     {draft && <p class="draft-note">Draft — visible only in local dev, not published.</p>}
 
+    {hasFacts && (
     <section class="section">
       <dl class="facts">
-        <div>
-          <dt>Outcome</dt>
-          <dd>{outcome}</dd>
-        </div>
+        {
+          outcome && (
+            <div>
+              <dt>Outcome</dt>
+              <dd>{outcome}</dd>
+            </div>
+          )
+        }
         {
           role && (
             <div>
@@ -55,9 +56,17 @@ const { Content } = await render(entry);
           )
         }
         {
+          authors && (
+            <div>
+              <dt>Authors</dt>
+              <dd>{authors.join(', ')}</dd>
+            </div>
+          )
+        }
+        {
           services.length > 0 && (
             <div>
-              <dt>Services</dt>
+              <dt>Areas</dt>
               <dd>
                 <ul class="tags">
                   {services.map((s) => (
@@ -68,18 +77,31 @@ const { Content } = await render(entry);
             </div>
           )
         }
-        <div>
-          <dt>Date</dt>
-          <dd>{formatDate(date)}</dd>
-        </div>
+        {
+          date && (
+            <div>
+              <dt>Date</dt>
+              <dd>{formatDate(date)}</dd>
+            </div>
+          )
+        }
+        {
+          language && (
+            <div>
+              <dt>Language</dt>
+              <dd>{language}</dd>
+            </div>
+          )
+        }
       </dl>
     </section>
+    )}
 
     <section class="section">
       <div class="prose case-body">
         <Content />
       </div>
-      <p><a class="back" href="/portfolio/">← All case studies</a></p>
+      <p><a class="back" href="/portfolio/">← All work</a></p>
     </section>
   </div>
 
@@ -146,6 +168,46 @@ const { Content } = await render(entry);
 
   .case-body :global(h2:first-child) {
     margin-top: 0;
+  }
+
+  /* Markdown tables (e.g. crosswalk samples) get the matrix treatment and may be wider than the text column */
+  .case-body :global(table) {
+    display: block;
+    width: min(calc(var(--max-width) - 2 * var(--gutter)), calc(100vw - 2 * var(--gutter)));
+    max-width: none;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .case-body :global(th) {
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-align: left;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--accent);
+  }
+
+  .case-body :global(td) {
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--line);
+    vertical-align: top;
+    min-width: 9rem;
+  }
+
+  .case-body :global(td:first-child) {
+    background: var(--tint);
+    min-width: 5.5rem;
+    white-space: nowrap;
+  }
+
+  .case-body :global(h3) {
+    color: var(--accent-dark);
+    margin: 1.5rem 0 0.5rem;
   }
 
   .back {

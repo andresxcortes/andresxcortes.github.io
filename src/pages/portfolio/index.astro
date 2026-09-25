@@ -3,38 +3,53 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroBand from '../../components/HeroBand.astro';
 import CaseStudyCard from '../../components/CaseStudyCard.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { getCaseStudies } from '../../lib/case-studies';
+import { getCaseStudies, type CaseType } from '../../lib/case-studies';
 
 const cases = await getCaseStudies();
+
+const groups: { type: CaseType; heading: string }[] = [
+  { type: 'engagement', heading: 'Engagements' },
+  { type: 'research', heading: 'Research' },
+  { type: 'resource', heading: 'Resources' },
+  { type: 'project', heading: 'Projects & proofs of concept' },
+];
+const sections = groups
+  .map((g) => ({ ...g, entries: cases.filter((c) => c.data.type === g.type) }))
+  .filter((g) => g.entries.length > 0);
 ---
 
 <BaseLayout
   title="Portfolio — Andrés Cortés"
   description="Anonymized case studies in security, GRC, and regulatory compliance for fintech and crypto across Latin America."
 >
-  <HeroBand title="Portfolio" subtitle="Selected engagements · Fintech & Crypto · Latin America">
+  <HeroBand title="Portfolio" subtitle="Engagements · Research · Resources · Projects">
     <p class="lead">
-      Case studies are anonymized by default: sector, stage, and outcome — never client names or
-      confidential detail.
+      Client case studies are anonymized by default: sector, stage, and outcome — never client
+      names or confidential detail.
     </p>
   </HeroBand>
 
   <div class="container">
-    <section class="section">
-      {
-        cases.length > 0 ? (
-          <ul class="grid">
-            {cases.map((entry) => (
-              <li>
-                <CaseStudyCard entry={entry} />
-              </li>
-            ))}
-          </ul>
-        ) : (
+    {
+      sections.length > 0 ? (
+        sections.map((g) => (
+          <section class="section">
+            <h2 class="section-title">{g.heading}</h2>
+            <ul class="grid">
+              {g.entries.map((entry) => (
+                <li>
+                  <CaseStudyCard entry={entry} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      ) : (
+        <section class="section">
           <p class="muted">Case studies are being prepared and will be published here soon.</p>
-        )
-      }
-    </section>
+        </section>
+      )
+    }
   </div>
 
   <CtaBand />

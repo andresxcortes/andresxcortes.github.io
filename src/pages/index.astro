@@ -7,7 +7,7 @@ import { markets } from '../data/regulatory';
 import CaseStudyCard from '../components/CaseStudyCard.astro';
 import { getCaseStudies } from '../lib/case-studies';
 
-const featured = (await getCaseStudies()).filter((c) => c.data.featured).slice(0, 2);
+const featured = (await getCaseStudies()).filter((c) => c.data.featured).slice(0, 3);
 
 const person = {
   '@context': 'https://schema.org',
@@ -108,7 +108,7 @@ const person = {
             ))}
           </ul>
           <p>
-            <a class="more" href="/portfolio/">All case studies →</a>
+            <a class="more" href="/portfolio/">All work →</a>
           </p>
         </section>
       )
@@ -167,7 +167,7 @@ const person = {
 
   .featured {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 1.25rem;
     margin: 0;
     padding: 0;

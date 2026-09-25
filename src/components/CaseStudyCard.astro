@@ -1,26 +1,27 @@
 ---
-import type { CaseStudy } from '../lib/case-studies';
+import { contextLine, typeLabels, type CaseStudy } from '../lib/case-studies';
 
 interface Props {
   entry: CaseStudy;
 }
 
 const { entry } = Astro.props;
-const { title, sector, stage, region, summary, outcome, draft, client_named, organization, role } =
-  entry.data;
-const org = client_named ? organization : undefined;
+const { type, title, summary, outcome, draft, role, authors, status } = entry.data;
+const context = contextLine(entry.data);
+const byline = role ?? (authors ? authors.join(', ') : undefined);
 ---
 
 <article class="card">
   <p class="meta">
     {draft && <span class="draft">Draft</span>}
-    {org && <strong class="org">{org} · </strong>}
-    {sector} · {stage} · {region.join(' / ')}
+    <span class="type">{typeLabels[type]}</span>
+    {status && <span> · {status}</span>}
+    {context && <span> · {context}</span>}
   </p>
-  {role && <p class="role">{role}</p>}
+  {byline && <p class="byline">{byline}</p>}
   <h3><a href={`/portfolio/${entry.id}/`}>{title}</a></h3>
   <p class="summary">{summary}</p>
-  <p class="outcome"><strong>Outcome:</strong> {outcome}</p>
+  {outcome && <p class="outcome"><strong>Outcome:</strong> {outcome}</p>}
 </article>
 
 <style>
@@ -46,11 +47,15 @@ const org = client_named ? organization : undefined;
     color: var(--muted);
   }
 
-  .org {
+  .type {
+    font-weight: 700;
     color: var(--accent-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.78rem;
   }
 
-  .role {
+  .byline {
     margin: 0;
     font-size: 0.85rem;
     font-weight: 600;
@@ -90,8 +95,11 @@ const org = client_named ? organization : undefined;
     margin: 0;
   }
 
+  .summary {
+    flex-grow: 1;
+  }
+
   .outcome {
-    margin-top: auto;
     padding-top: 0.6rem;
     border-top: 1px solid var(--line);
     font-size: 0.95rem;
