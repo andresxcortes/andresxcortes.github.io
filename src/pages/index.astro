@@ -4,6 +4,10 @@ import HeroBand from '../components/HeroBand.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { services } from '../data/services';
 import { markets } from '../data/regulatory';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import { getCaseStudies } from '../lib/case-studies';
+
+const featured = (await getCaseStudies()).filter((c) => c.data.featured).slice(0, 2);
 ---
 
 <BaseLayout
@@ -75,6 +79,24 @@ import { markets } from '../data/regulatory';
       </ul>
       <p><a class="more" href="/regulatory-coverage">See the full matrix →</a></p>
     </section>
+
+    {
+      featured.length > 0 && (
+        <section class="section">
+          <h2 class="section-title">Selected work</h2>
+          <ul class="featured">
+            {featured.map((entry) => (
+              <li>
+                <CaseStudyCard entry={entry} />
+              </li>
+            ))}
+          </ul>
+          <p>
+            <a class="more" href="/portfolio">All case studies →</a>
+          </p>
+        </section>
+      )
+    }
   </div>
 
   <CtaBand />
@@ -125,6 +147,15 @@ import { markets } from '../data/regulatory';
 
   .markets a:hover {
     background: var(--line);
+  }
+
+  .featured {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   .more {

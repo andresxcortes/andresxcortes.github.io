@@ -25,5 +25,10 @@ Starter kit para el sitio de portafolio en Astro + GitHub Pages. Este repo se lo
 ## Agregar un caso de estudio nuevo
 Copiá `site-content/case-studies/_template.md`, completá el frontmatter y las secciones (Context → Problem → Approach → Outcome), y mantenelo **anonimizado** salvo permiso escrito del cliente. Push y listo.
 
+- El nombre del archivo es la URL: `mi-caso.md` → `/portfolio/mi-caso`. Los archivos que empiezan con `_` se ignoran.
+- Con `draft: true` el caso se ve en `npm run dev` (con etiqueta "Draft") pero **no se publica**. Pasalo a `false` recién cuando lo hayas revisado.
+- `featured: true` lo muestra en la Home ("Selected work", hasta 2 casos).
+- Si falta un campo obligatorio o tiene formato incorrecto, `npm run build` falla y el deploy no sale.
+
 ## Recordatorio
 Repo público = zona sin datos de clientes. Ante la duda, anonimizá.

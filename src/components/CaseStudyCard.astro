@@ -1,0 +1,88 @@
+---
+import type { CaseStudy } from '../lib/case-studies';
+
+interface Props {
+  entry: CaseStudy;
+}
+
+const { entry } = Astro.props;
+const { title, sector, stage, region, summary, outcome, draft } = entry.data;
+---
+
+<article class="card">
+  <p class="meta">
+    {draft && <span class="draft">Draft</span>}
+    {sector} · {stage} · {region.join(' / ')}
+  </p>
+  <h3><a href={`/portfolio/${entry.id}`}>{title}</a></h3>
+  <p class="summary">{summary}</p>
+  <p class="outcome"><strong>Outcome:</strong> {outcome}</p>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    height: 100%;
+    background: var(--card);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .card:hover {
+    background: var(--tint);
+  }
+
+  .meta {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .draft {
+    display: inline-block;
+    margin-right: 0.5rem;
+    padding: 0 0.4rem;
+    border-radius: 3px;
+    background: #8a5a00;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  h3 a {
+    color: var(--accent-dark);
+    text-decoration: none;
+  }
+
+  /* Whole card is clickable */
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .outcome {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.95rem;
+  }
+
+  .outcome strong {
+    color: var(--accent-dark);
+  }
+</style>

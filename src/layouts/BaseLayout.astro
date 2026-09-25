@@ -15,11 +15,14 @@ const nav = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/regulatory-coverage', label: 'Regulatory Coverage' },
+  { href: '/portfolio', label: 'Portfolio' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`);
 ---
 
 <html lang="en">
@@ -40,7 +43,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
             {
               nav.map((item) => (
                 <li>
-                  <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>
+                  <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
                     {item.label}
                   </a>
                 </li>

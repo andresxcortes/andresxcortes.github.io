@@ -11,7 +11,7 @@ outcome: "Evidence packages delivered within regulator deadlines; ISO 27001 achi
 date: 2025-06-01
 client_named: false
 featured: true
-draft: false
+draft: true                      # keep true until Andrés validates it for public release
 ---
 
 ## Context
