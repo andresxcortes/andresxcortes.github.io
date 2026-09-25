@@ -1,0 +1,151 @@
+---
+import { columns, markets } from '../data/regulatory';
+---
+
+<!-- Desktop: branded matrix table. Mobile: one card per market. -->
+<div class="matrix">
+  <table>
+    <caption class="visually-hidden">
+      Fintech, crypto, AML/CFT, and data-protection frameworks by market
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Market</th>
+        {columns.map((c) => <th scope="col">{c}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {
+        markets.map((m) => (
+          <tr>
+            <th scope="row">{m.name}</th>
+            {m.cells.map((cell) => (
+              <td>{cell}</td>
+            ))}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <div class="cards">
+    {
+      markets.map((m) => (
+        <section class="market">
+          <h3>{m.name}</h3>
+          <dl>
+            {m.cells.map((cell, i) => (
+              <div>
+                <dt>{columns[i]}</dt>
+                <dd>{cell}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  thead th {
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-align: left;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--accent);
+  }
+
+  tbody th {
+    background: var(--tint);
+    color: var(--accent-dark);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-align: left;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+  tbody th,
+  td {
+    padding: 0.85rem 0.9rem;
+    border: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  tbody tr:nth-child(even) td {
+    background: #fafcfc;
+  }
+
+  .cards {
+    display: none;
+  }
+
+  @media (max-width: 800px) {
+    table {
+      display: none;
+    }
+
+    .cards {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .market {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .market h3 {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 1.15rem;
+    }
+
+    dl {
+      margin: 0;
+    }
+
+    dl > div {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    dl > div:first-child {
+      border-top: 0;
+    }
+
+    dt {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--accent-dark);
+      margin-bottom: 0.2rem;
+    }
+
+    dd {
+      margin: 0;
+      font-size: 0.92rem;
+    }
+  }
+</style>

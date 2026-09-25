@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroBand from '../components/HeroBand.astro';
+---
+
+<BaseLayout
+  title="Contact — Andrés Cortés"
+  description="Get in touch about fractional CISO, regulatory readiness, or a security engagement."
+>
+  <HeroBand title="Let's talk">
+    <p class="lead">
+      Fractional CISO, regulatory &amp; VASP readiness, ISO 27001 / SOC 2, or a specific security
+      problem — reach out and we'll scope it.
+    </p>
+  </HeroBand>
+
+  <div class="container">
+    <section class="section section--end">
+      <ul class="channels">
+        <li>
+          <span class="label">Email</span>
+          <a href="mailto:andres.x.cortes@gmail.com">andres.x.cortes@gmail.com</a>
+        </li>
+        <li>
+          <span class="label">LinkedIn</span>
+          <a href="https://linkedin.com/in/andresxcortes" rel="noopener">linkedin.com/in/andresxcortes</a>
+        </li>
+      </ul>
+      <p class="muted">Based in Buenos Aires · working remotely across LatAm, the US, and Europe.</p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .channels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 1.25rem;
+    margin: 0 0 2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .channels li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    background: var(--card);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--accent-dark);
+  }
+
+  .channels a {
+    font-size: 1.1rem;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+</style>

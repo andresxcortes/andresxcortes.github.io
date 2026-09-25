@@ -1,0 +1,59 @@
+---
+interface Props {
+  heading?: string;
+}
+
+const { heading = "Let's talk" } = Astro.props;
+---
+
+<section class="cta">
+  <div class="container">
+    <h2>{heading}</h2>
+    <slot>
+      <p>Fractional CISO, regulatory &amp; VASP readiness, ISO 27001 / SOC 2, or a specific security problem.</p>
+    </slot>
+    <ul class="links">
+      <li><a href="mailto:andres.x.cortes@gmail.com">andres.x.cortes@gmail.com</a></li>
+      <li><a href="https://linkedin.com/in/andresxcortes" rel="noopener">linkedin.com/in/andresxcortes</a></li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .cta {
+    margin-top: var(--section-gap);
+    background: var(--accent);
+    color: #fff;
+    padding-block: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  }
+
+  p {
+    margin: 0;
+    max-width: 62ch;
+    opacity: 0.92;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-weight: 600;
+  }
+
+  a {
+    color: #fff;
+    overflow-wrap: anywhere;
+  }
+
+  a:hover {
+    color: var(--tint);
+  }
+</style>

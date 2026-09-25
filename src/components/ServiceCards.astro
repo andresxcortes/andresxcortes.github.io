@@ -1,0 +1,66 @@
+---
+import type { Service } from '../data/services';
+
+interface Props {
+  services: Service[];
+}
+
+const { services } = Astro.props;
+---
+
+<ul class="grid">
+  {
+    services.map((s) => (
+      <li class="card">
+        <h3>{s.title}</h3>
+        <p>{s.description}</p>
+        {s.link && <a href={s.link.href}>{s.link.label}</a>}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 720px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .card {
+    background: var(--card);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem;
+    color: var(--accent-dark);
+    font-size: 1.15rem;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>

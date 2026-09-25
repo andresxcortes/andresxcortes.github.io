@@ -1,0 +1,120 @@
+:root {
+  --accent: #0e5c63;
+  --accent-dark: #0a4a50;
+  --ink: #1a1a1a;
+  --muted: #5a5a5a;
+  --card: #f1f6f6;
+  --tint: #dceaea;
+  --line: #bfd4d4;
+  --bg: #ffffff;
+
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Space Grotesk Variable', var(--font-body);
+
+  --max-width: 1100px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --section-gap: clamp(3rem, 7vw, 5rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--accent-dark);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-gap) 0;
+}
+
+.section--end {
+  padding-bottom: var(--section-gap);
+}
+
+/* Section title with the brochure's thin teal rule underneath */
+.section-title {
+  color: var(--accent);
+  font-size: clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.prose {
+  max-width: 68ch;
+}
+
+.prose p {
+  margin: 0 0 1em;
+}
+
+.prose ul {
+  padding-left: 1.2em;
+}
+
+.prose li {
+  margin-bottom: 0.4em;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.link-row,
+.prose .link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  list-style: none;
+  font-weight: 600;
+}
+
+.link-row a {
+  text-decoration: none;
+}
+
+.link-row a:hover {
+  text-decoration: underline;
+}
