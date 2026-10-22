@@ -15,9 +15,9 @@ const stripHtmlComments = defineMdastPlugin({
   },
 });
 
-// User site (<user>.github.io) publishes at the root: set `site`, never `base`.
+// Custom domain (public/CNAME) publishes at the root: set `site`, never `base`.
 export default defineConfig({
-  site: 'https://andresxcortes.github.io',
+  site: 'https://andresxcortes.dev',
   trailingSlash: 'always',
   integrations: [sitemap()],
   markdown: {
