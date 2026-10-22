@@ -1,12 +1,14 @@
 :root {
-  --accent: #0e5c63;
-  --accent-dark: #0a4a50;
-  --ink: #1a1a1a;
-  --muted: #5a5a5a;
-  --card: #f1f6f6;
-  --tint: #dceaea;
-  --line: #bfd4d4;
-  --bg: #ffffff;
+  --accent: #1f2a44;
+  --accent-dark: #141c2f;
+  --brass: #a8874f;
+  --brass-light: #d9c39a;
+  --ink: #1c1c1e;
+  --muted: #5e5a55;
+  --card: #f7f4ee;
+  --tint: #ece6da;
+  --line: #d9d1c2;
+  --bg: #fcfbf8;
 
   --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Space Grotesk Variable', var(--font-body);
@@ -53,7 +55,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--brass);
   outline-offset: 2px;
 }
 
@@ -71,13 +73,13 @@ a:hover {
   padding-bottom: var(--section-gap);
 }
 
-/* Section title with the brochure's thin teal rule underneath */
+/* Section title with a thin brass rule underneath */
 .section-title {
   color: var(--accent);
   font-size: clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
   margin: 0 0 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 2px solid var(--brass);
 }
 
 .prose {

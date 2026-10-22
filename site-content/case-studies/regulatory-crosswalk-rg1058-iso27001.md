@@ -35,4 +35,4 @@ A working tool for VASPs preparing for CNV registration, and for the security an
 
 ---
 
-**Get the full crosswalk.** Available as a paid deliverable, with an optional walkthrough. → andres.x.cortes@gmail.com · linkedin.com/in/andresxcortes
+**Get the full crosswalk.** Available as a paid deliverable, with an optional walkthrough. → consulting@andresxcortes.dev · linkedin.com/in/andresxcortes

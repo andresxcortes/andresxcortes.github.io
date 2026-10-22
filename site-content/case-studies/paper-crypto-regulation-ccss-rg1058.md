@@ -28,4 +28,4 @@ This is the analytical backbone behind my regulatory work — the same lens I br
 
 ## Access
 <!-- Options for the full paper: host the PDF on the site, or publish as a preprint (Zenodo / SSRN / ResearchGate) and link it here. Since the paper is unpublished, a preprint DOI (e.g. Zenodo) gives it a citable, credible home. -->
-Full paper (Spanish) available on request. → andres.x.cortes@gmail.com · linkedin.com/in/andresxcortes
+Full paper (Spanish) available on request. → consulting@andresxcortes.dev · linkedin.com/in/andresxcortes

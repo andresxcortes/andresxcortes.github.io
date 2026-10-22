@@ -16,7 +16,7 @@ const { heading = "Let's talk" } = Astro.props;
     </slot>
     <ul class="links">
       <li>
-        <a href="mailto:andres.x.cortes@gmail.com"><Icon name="gmail" /> andres.x.cortes@gmail.com</a>
+        <a href="mailto:consulting@andresxcortes.dev"><Icon name="mail" /> consulting@andresxcortes.dev</a>
       </li>
       <li>
         <a href="https://linkedin.com/in/andresxcortes" rel="noopener"><Icon name="linkedin" /> linkedin.com/in/andresxcortes</a>
@@ -29,6 +29,7 @@ const { heading = "Let's talk" } = Astro.props;
   .cta {
     margin-top: var(--section-gap);
     background: var(--accent);
+    border-top: 3px solid var(--brass);
     color: #fff;
     padding-block: clamp(2.5rem, 6vw, 3.5rem);
   }
@@ -63,6 +64,6 @@ const { heading = "Let's talk" } = Astro.props;
   }
 
   a:hover {
-    color: var(--tint);
+    color: var(--brass-light);
   }
 </style>

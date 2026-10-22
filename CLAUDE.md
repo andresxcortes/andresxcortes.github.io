@@ -21,7 +21,7 @@ El diferenciador central de Andrés es la **experiencia regulatoria concreta en 
 - Todo el copy del sitio va en **inglés** (mercado primario cross-border / LatAm-España). La versión en español queda para una fase posterior.
 
 ## Diseño
-Seguí `site-content/brand.md`: paleta teal (#0E5C63), tipografía, ritmo, y los cuatro componentes que vienen del brochure — **header/hero band**, **grilla de tarjetas de servicios**, **tabla de matriz regulatoria**, **CTA band**. El sitio tiene que leerse como la misma identidad que el CV y el brochure.
+Seguí `site-content/brand.md`: paleta azul medianoche (#1F2A44) + bronce (#A8874F), tipografía, ritmo, y los cuatro componentes que vienen del brochure — **header/hero band**, **grilla de tarjetas de servicios**, **tabla de matriz regulatoria**, **CTA band**. El sitio tiene que leerse como la misma identidad que el CV y el brochure.
 
 ## Guardrails — NO NEGOCIABLES (perfil de seguridad)
 El repo es **público**. Andrés trabaja en seguridad; una filtración acá es un daño reputacional directo.

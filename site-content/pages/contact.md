@@ -7,7 +7,7 @@ description: "Get in touch about fractional CISO, regulatory readiness, or a sec
 
 Fractional CISO, regulatory & VASP readiness, ISO 27001 / SOC 2, or a specific security problem — reach out and we'll scope it.
 
-- **Email:** andres.x.cortes@gmail.com
+- **Email:** consulting@andresxcortes.dev
 - **LinkedIn:** [linkedin.com/in/andresxcortes](https://linkedin.com/in/andresxcortes)
 
 <!-- Claude Code:
