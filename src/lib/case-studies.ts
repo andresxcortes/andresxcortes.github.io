@@ -8,6 +8,7 @@ export const typeLabels: Record<CaseType, string> = {
   project: 'Project',
   research: 'Research',
   resource: 'Resource',
+  note: 'Field note',
 };
 
 /** Published entries, newest first (undated last). Drafts are visible only in `npm run dev`. */

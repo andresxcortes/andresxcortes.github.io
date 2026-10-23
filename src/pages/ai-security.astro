@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroBand from '../components/HeroBand.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import type { Service } from '../data/services';
+import { getCaseStudies } from '../lib/case-studies';
+
+const offerings: Service[] = [
+  {
+    title: 'Pre-release security review',
+    description:
+      'A review of AI-built code before it ships: authentication, access control, secrets handling, and dependencies, with prioritized findings and concrete fixes.',
+  },
+  {
+    title: 'Secrets and key hygiene',
+    description:
+      'Where credentials live across code, AI tools, and CI; what to rotate now; and how to limit the damage when a key leaks.',
+  },
+  {
+    title: 'Agent and MCP configuration review',
+    description:
+      'What your coding agents can read, run, and reach; which plugins and MCP servers you trust; and how approvals and logging are set up.',
+  },
+  {
+    title: 'The path to audit readiness',
+    description:
+      'When customers or regulators start asking for SOC 2 or ISO 27001, the same findings feed a structured readiness program.',
+    link: { href: '/services/', label: 'See all services →' },
+  },
+];
+
+const notes = (await getCaseStudies()).filter((c) => c.data.type === 'note');
+---
+
+<BaseLayout
+  title="AI Security — Andrés Cortés"
+  description="Security review for software built with AI coding tools and agents: code, credentials, MCP and agent configuration, and the path to audit readiness."
+>
+  <HeroBand title="AI Security" subtitle="Security for software built with AI tools and agents">
+    <p class="lead">
+      AI coding tools and agents hold credentials, read untrusted code, and call outside servers.
+      The code they produce needs the same scrutiny as any other code, before it reaches users.
+    </p>
+  </HeroBand>
+
+  <div class="container">
+    <section class="section">
+      <h2 class="section-title">Who this is for</h2>
+      <div class="prose">
+        <p>
+          Founders and small teams shipping products built with AI coding tools, and teams
+          adopting coding agents who want to know what those agents can reach. If a customer has
+          asked for a security questionnaire and you do not yet have answers, this is a good
+          starting point.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">What I do</h2>
+      <ServiceCards services={offerings} />
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Field notes</h2>
+      <div class="prose">
+        <p>
+          Short, sourced notes on what is happening in AI and agent security. Each note separates
+          what is confirmed from what is still unproven.
+        </p>
+      </div>
+      {
+        notes.length > 0 ? (
+          <ul class="grid">
+            {notes.map((entry) => (
+              <li>
+                <CaseStudyCard entry={entry} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="muted">The first field note is being prepared.</p>
+        )
+      }
+    </section>
+  </div>
+
+  <CtaBand heading="Building with AI tools?">
+    <p>Send a short description of what you are building and which tools you use. I will tell you where a review would help most.</p>
+  </CtaBand>
+</BaseLayout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 720px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

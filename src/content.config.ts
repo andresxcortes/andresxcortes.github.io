@@ -10,8 +10,9 @@ const caseStudies = defineCollection({
   schema: z
     .object({
       // engagement = client or employer work; project = own build / PoC;
-      // research = papers; resource = tools and deliverables.
-      type: z.enum(['engagement', 'project', 'research', 'resource']).default('engagement'),
+      // research = papers; resource = tools and deliverables;
+      // note = short, sourced field notes on current events (AI security).
+      type: z.enum(['engagement', 'project', 'research', 'resource', 'note']).default('engagement'),
       title: z.string(),
       summary: z.string(),
       sector: z.string().optional(),

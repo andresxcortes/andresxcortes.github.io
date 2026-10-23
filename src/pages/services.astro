@@ -18,6 +18,16 @@ import { services } from '../data/services';
     </section>
 
     <section class="section">
+      <h2 class="section-title">New: security for software built with AI</h2>
+      <p class="ai-lead">
+        Teams are shipping products built with AI coding tools and agents. Those tools hold
+        credentials, read untrusted code, and connect to outside servers, and the code they
+        produce still needs a security review before release.
+      </p>
+      <p><a class="ai-link" href="/ai-security/">See AI security →</a></p>
+    </section>
+
+    <section class="section">
       <h2 class="section-title">Engagement models</h2>
       <ul class="models">
         <li>
@@ -40,6 +50,20 @@ import { services } from '../data/services';
 </BaseLayout>
 
 <style>
+  .ai-lead {
+    max-width: 68ch;
+    margin: 0 0 1rem;
+  }
+
+  .ai-link {
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .ai-link:hover {
+    text-decoration: underline;
+  }
+
   .models {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
