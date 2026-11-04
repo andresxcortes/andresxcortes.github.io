@@ -7,6 +7,7 @@ status: "Master's thesis · working draft (Feb 2025; chapters 5.2, 5.3, 7 and 8 
 language: "Spanish"
 date: 2025-02-01
 featured: false
+reader: true
 draft: false
 summary: "Working draft of my master's thesis (UBA, MSc in Cyber Defence and Cybersecurity): how North Korea-linked threat actors target crypto and DeFi, and what the Argentine financial system needs to defend against them."
 ---

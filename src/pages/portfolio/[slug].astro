@@ -3,6 +3,8 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroBand from '../../components/HeroBand.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import '@fontsource-variable/source-serif-4';
+import '@fontsource-variable/source-serif-4/wght-italic.css';
 import {
   contextLine,
   formatDate,
@@ -27,7 +29,21 @@ const subtitle = [type === 'engagement' ? undefined : typeLabels[type], status, 
   .filter(Boolean)
   .join(' · ');
 const hasFacts = Boolean(outcome || role || authors || services.length || date || language);
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
+
+// Long-form reading layout (reader: true): serif body, sticky table of contents, chapter navigation.
+const reader = entry.data.reader;
+const short = (text: string) =>
+  text === 'Footnotes' ? 'Notas al pie' : text.split('. ').slice(0, 2).join('. ');
+type TocItem = { slug: string; text: string; children: { slug: string; text: string }[] };
+const toc: TocItem[] = [];
+if (reader) {
+  for (const h of headings) {
+    if (h.slug === 'contenido') continue;
+    if (h.depth === 2) toc.push({ slug: h.slug, text: h.text, children: [] });
+    else if (h.depth === 3 && toc.length) toc[toc.length - 1].children.push({ slug: h.slug, text: h.text });
+  }
+}
 ---
 
 <BaseLayout title={`${title} — Andrés Cortés`} description={summary} type="article">
@@ -98,9 +114,56 @@ const { Content } = await render(entry);
     )}
 
     <section class="section">
-      <div class="prose case-body">
-        <Content />
-      </div>
+      {
+        reader ? (
+          <div class="reader" data-reader>
+            <div class="reader-progress" aria-hidden="true"><span></span></div>
+
+            <details class="reader-mobile-toc">
+              <summary>Índice</summary>
+              <ul class="toc">
+                {toc.map((c) => (
+                  <li>
+                    <a href={`#${c.slug}`} title={c.text}>{short(c.text)}</a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+
+            <aside class="reader-sidebar">
+              <nav aria-label="Índice del documento" class="toc-nav">
+                <p class="toc-title"><a href="#contenido">Índice</a></p>
+                <ul class="toc">
+                  {toc.map((c) => (
+                    <li data-slug={c.slug}>
+                      <a href={`#${c.slug}`} title={c.text}>{short(c.text)}</a>
+                      {c.children.length > 0 && (
+                        <ul class="toc-sub">
+                          {c.children.map((s2) => (
+                            <li>
+                              <a href={`#${s2.slug}`} title={s2.text}>{short(s2.text)}</a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </aside>
+
+            <div class="prose case-body reader-body" lang="es">
+              <Content />
+            </div>
+
+            <a class="to-index" href="#contenido" aria-label="Volver al índice">↑ Índice</a>
+          </div>
+        ) : (
+          <div class="prose case-body">
+            <Content />
+          </div>
+        )
+      }
       <p><a class="back" href="/portfolio/">← All work</a></p>
     </section>
   </div>
@@ -226,4 +289,434 @@ const { Content } = await render(entry);
     margin-top: 2rem;
     font-weight: 600;
   }
+
+  /* ---------- Long-form reading layout (reader: true) ---------- */
+  .reader {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  @media (min-width: 62rem) {
+    .reader {
+      grid-template-columns: 15.5rem minmax(0, 1fr);
+      gap: 3rem;
+      align-items: start;
+    }
+  }
+
+  .reader-body {
+    max-width: 68ch;
+    font-family: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.1rem, 1.05rem + 0.2vw, 1.19rem);
+    line-height: 1.68;
+    color: #202124;
+    hyphens: manual;
+    text-wrap: pretty;
+    font-optical-sizing: auto;
+  }
+
+  .reader-body :global(p),
+  .reader-body :global(li) {
+    margin-bottom: 1em;
+  }
+
+  .reader-body :global(h2),
+  .reader-body :global(h3),
+  .reader-body :global(h4) {
+    font-family: var(--font-heading);
+    hyphens: manual;
+    scroll-margin-top: 4.5rem;
+  }
+
+  .reader-body :global(h2) {
+    margin-top: 3.5rem;
+  }
+
+  .reader-body :global(blockquote) {
+    margin: 1.25rem 0;
+    padding: 0.2rem 1.1rem;
+    border-left: 4px solid var(--brass);
+    background: var(--card);
+    font-size: 0.95em;
+  }
+
+  /* Thesis tables: smaller type and narrower columns; they still scroll sideways on phones */
+  .case-body.reader-body :global(table) {
+    width: 100%;
+    max-width: 100%;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .case-body.reader-body :global(td),
+  .case-body.reader-body :global(th) {
+    min-width: 6.5rem;
+    padding: 0.55rem 0.6rem;
+  }
+
+  .case-body.reader-body :global(td:first-child) {
+    white-space: normal;
+    min-width: 6.5rem;
+  }
+
+  /* Phones: wider columns so long cells don't become tall slivers; the table scrolls sideways */
+  @media (max-width: 62rem) {
+    .case-body.reader-body :global(td),
+    .case-body.reader-body :global(th) {
+      min-width: 10rem;
+    }
+  }
+
+  .case-body.reader-body :global(img) {
+    display: block;
+    margin: 1.25rem auto;
+  }
+
+  .reader-body :global(td),
+  .reader-body :global(th) {
+    line-height: 1.45;
+  }
+
+  .reader-body :global(sup a) {
+    text-decoration: none;
+    padding: 0 0.1em;
+  }
+
+  .reader-body :global(section[data-footnotes]) {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.82em;
+    line-height: 1.5;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+
+  .reader-body :global(section[data-footnotes] h2) {
+    font-size: 1rem;
+    border: 0;
+    margin: 0 0 0.5rem;
+  }
+
+  .reader-body :global(section[data-footnotes] li) {
+    margin-bottom: 0.4em;
+    scroll-margin-top: 4.5rem;
+  }
+
+  .reader-body :global(.anchor) {
+    margin-left: 0.45em;
+    color: var(--brass);
+    text-decoration: none;
+    font-weight: 400;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .reader-body :global(h2:hover .anchor),
+  .reader-body :global(h3:hover .anchor),
+  .reader-body :global(h4:hover .anchor),
+  .reader-body :global(.anchor:focus-visible) {
+    opacity: 1;
+  }
+
+  /* End-of-chapter navigation (inserted by the script below) */
+  .reader-body :global(.chapter-nav) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    justify-content: space-between;
+    margin: 2.5rem 0 0;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    hyphens: manual;
+  }
+
+  .reader-body :global(.chapter-nav a) {
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .reader-body :global(.chapter-nav a:hover) {
+    text-decoration: underline;
+  }
+
+  /* Sidebar table of contents */
+  .reader-sidebar {
+    display: none;
+  }
+
+  @media (min-width: 62rem) {
+    .reader-sidebar {
+      display: block;
+      position: sticky;
+      top: 1rem;
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      font-size: 0.84rem;
+      line-height: 1.35;
+    }
+  }
+
+  .toc-title {
+    margin: 0 0 0.6rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+
+  .toc-title a {
+    color: var(--brass);
+    text-decoration: none;
+  }
+
+  .toc,
+  .toc-sub {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .toc > li {
+    margin: 0 0 0.15rem;
+  }
+
+  .toc a {
+    display: block;
+    padding: 0.28rem 0.5rem;
+    border-left: 3px solid transparent;
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .toc a:hover {
+    background: var(--tint);
+  }
+
+  .toc a[aria-current='true'] {
+    border-left-color: var(--brass);
+    background: var(--card);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .toc-sub {
+    padding-left: 0.75rem;
+  }
+
+  .toc-sub a {
+    color: var(--muted);
+    font-size: 0.95em;
+  }
+
+  /* With JS, only the active chapter shows its subsections */
+  [data-reader].js .toc-sub {
+    display: none;
+  }
+
+  [data-reader].js li.open > .toc-sub {
+    display: block;
+  }
+
+  /* Mobile / tablet: sticky "Índice" bar */
+  .reader-mobile-toc {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+  }
+
+  .reader-mobile-toc summary {
+    cursor: pointer;
+    padding: 0.7rem 0;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .reader-mobile-toc .toc {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-bottom: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 62rem) {
+    .reader-mobile-toc {
+      display: none;
+    }
+  }
+
+  /* Reading progress bar and back-to-index button */
+  .reader-progress {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 3px;
+    z-index: 30;
+    background: transparent;
+  }
+
+  .reader-progress span {
+    display: block;
+    height: 100%;
+    width: calc(var(--read, 0) * 100%);
+    background: var(--brass);
+  }
+
+  .to-index {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 25;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  .to-index:hover {
+    color: #fff;
+  }
+
+  .to-index.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html) {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media print {
+    .reader-sidebar,
+    .reader-mobile-toc,
+    .reader-progress,
+    .to-index,
+    .reader-body :global(.chapter-nav),
+    .reader-body :global(.anchor) {
+      display: none !important;
+    }
+
+    .reader {
+      display: block;
+    }
+  }
 </style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-reader]');
+  if (root) {
+    root.classList.add('js');
+    const body = root.querySelector<HTMLElement>('.reader-body')!;
+    const heads = Array.from(body.querySelectorAll<HTMLElement>('h2, h3, h4')).filter((h) => h.id);
+
+    const fnTitle = body.querySelector<HTMLElement>('section[data-footnotes] h2');
+    if (fnTitle) fnTitle.textContent = 'Notas al pie';
+
+    // "#" link on every heading so a section can be shared or bookmarked
+    for (const h of heads) {
+      const a = document.createElement('a');
+      a.className = 'anchor';
+      a.href = `#${h.id}`;
+      a.textContent = '#';
+      a.setAttribute('aria-label', 'Enlace a esta sección');
+      h.append(a);
+    }
+
+    // Chapter navigation: ↑ Índice · ← anterior · siguiente →
+    const chapters = Array.from(body.querySelectorAll<HTMLElement>('h2')).filter(
+      (h) => h.id && h.id !== 'contenido' && !h.closest('section[data-footnotes]'),
+    );
+    const clean = (h: HTMLElement) => (h.firstChild?.textContent ?? h.textContent ?? '').trim();
+    const label = (h: HTMLElement) => {
+      const t = clean(h);
+      const m = t.match(/^(\d+)\.\s/);
+      return m ? `Capítulo ${m[1]}` : t.charAt(0) + t.slice(1).toLowerCase();
+    };
+    const footnotes = body.querySelector('section[data-footnotes]');
+    chapters.forEach((h, i) => {
+      const nav = document.createElement('nav');
+      nav.className = 'chapter-nav';
+      nav.setAttribute('aria-label', 'Navegación entre capítulos');
+      const parts: string[] = [`<a href="#contenido">↑ Índice</a>`];
+      if (i > 0) parts.push(`<a href="#${chapters[i - 1].id}" title="${clean(chapters[i - 1])}">← ${label(chapters[i - 1])}</a>`);
+      if (i < chapters.length - 1) parts.push(`<a href="#${chapters[i + 1].id}" title="${clean(chapters[i + 1])}">${label(chapters[i + 1])} →</a>`);
+      else if (footnotes) parts.push(`<a href="#${footnotes.querySelector('h2')?.id ?? ''}">Notas al pie →</a>`);
+      nav.innerHTML = parts.join('');
+      // place at the end of this chapter: before the next chapter heading (or the footnotes)
+      const next = chapters[i + 1] ?? footnotes;
+      if (next) next.before(nav);
+      else body.append(nav);
+    });
+
+    // Reading progress + back-to-index button
+    const bar = root.querySelector<HTMLElement>('.reader-progress span')!;
+    const toTop = root.querySelector<HTMLElement>('.to-index')!;
+    const onScroll = () => {
+      const r = body.getBoundingClientRect();
+      const total = r.height - window.innerHeight;
+      const read = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
+      bar.style.setProperty('--read', String(read));
+      toTop.classList.toggle('visible', window.scrollY > 900);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Highlight the current section in the sidebar, expand the active chapter
+    const links = new Map<string, HTMLAnchorElement>();
+    root.querySelectorAll<HTMLAnchorElement>('.reader-sidebar .toc a').forEach((a) => {
+      links.set(a.getAttribute('href')!.slice(1), a);
+    });
+    const observed = heads.filter((h) => links.has(h.id));
+    const setActive = (id: string) => {
+      links.forEach((a) => a.removeAttribute('aria-current'));
+      root.querySelectorAll('.reader-sidebar li.open').forEach((li) => li.classList.remove('open'));
+      const a = links.get(id);
+      if (!a) return;
+      a.setAttribute('aria-current', 'true');
+      const chapter = a.closest('.toc > li');
+      chapter?.classList.add('open');
+      const sidebar = root.querySelector<HTMLElement>('.reader-sidebar');
+      if (sidebar && sidebar.offsetParent) {
+        const ar = a.getBoundingClientRect();
+        const sr = sidebar.getBoundingClientRect();
+        if (ar.top < sr.top || ar.bottom > sr.bottom) a.scrollIntoView({ block: 'nearest' });
+      }
+    };
+    const io = new IntersectionObserver(
+      () => {
+        let current = observed[0];
+        for (const h of observed) if (h.getBoundingClientRect().top <= 120) current = h;
+        if (current) setActive(current.id);
+      },
+      { rootMargin: '0px 0px -70% 0px', threshold: [0, 1] },
+    );
+    observed.forEach((h) => io.observe(h));
+
+    // Close the mobile index after choosing a section
+    root.querySelector('.reader-mobile-toc')?.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) (e.currentTarget as HTMLDetailsElement).open = false;
+    });
+  }
+</script>
