@@ -32,6 +32,8 @@ const caseStudies = defineCollection({
       language: z.string().optional(),
       featured: z.boolean().default(false),
       draft: z.boolean().default(false),
+      // Long-form reading layout: serif body, sticky table of contents, chapter navigation.
+      reader: z.boolean().default(false),
     })
     .superRefine((d, ctx) => {
       if (d.organization && !d.client_named) {

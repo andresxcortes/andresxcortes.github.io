@@ -50,6 +50,15 @@ El repo es **público**. Andrés trabaja en seguridad; una filtración acá es u
 - Identidad visual del brochure aplicada.
 - Cero datos sensibles en el repo.
 
+## Textos largos (tesis, papers, informes)
+Para publicar un texto largo usar el **layout de lectura**: en el frontmatter de la entrada en `site-content/case-studies/` poner `reader: true`. Está implementado en `src/pages/portfolio/[slug].astro`. Convenciones (decididas con Andrés, no re-litigar):
+- **Tipografía:** cuerpo en Source Serif 4 (`@fontsource-variable/source-serif-4`, self-hosted), ~18 px, interlineado ~1.68, columna de ~68 caracteres, sin corte silábico automático. Títulos con la tipografía del sitio.
+- **Navegación:** índice lateral fijo (en celular, barra "Índice" desplegable) con la sección actual resaltada; "↑ Índice", "← anterior" y "siguiente →" al final de cada capítulo; botón flotante "↑ Índice"; barra de progreso de lectura; enlace `#` en cada título; notas al pie con enlace de ida y vuelta.
+- **Estructura del Markdown:** un `## Contenido` con la lista de capítulos arriba (es el destino de "↑ Índice", id `contenido`), capítulos como `##`, secciones como `###`. El texto va en el idioma original; la intro y los metadatos en inglés.
+- **Descargas:** Word y PDF en `public/downloads/`, enlazados desde la cabecera de la entrada. Figuras en `public/research/<slug-corto>/`.
+- **Borradores:** avisar arriba que es un borrador y, si hay secciones con fecha distinta a la del documento, decirlo. Sin nombres de directores/tutores ni datos personales salvo que Andrés lo pida.
+- Mantener el resto del portfolio sin cambios: el layout sólo se activa con `reader: true`.
+
 ## Comandos
 ```
 npm install
