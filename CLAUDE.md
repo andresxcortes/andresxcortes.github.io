@@ -59,6 +59,13 @@ Para publicar un texto largo usar el **layout de lectura**: en el frontmatter de
 - **Borradores:** avisar arriba que es un borrador y, si hay secciones con fecha distinta a la del documento, decirlo. Sin nombres de directores/tutores ni datos personales salvo que Andrés lo pida.
 - Mantener el resto del portfolio sin cambios: el layout sólo se activa con `reader: true`.
 
+## Analítica
+- El DNS de `andresxcortes.dev` está en **Cloudflare**. La analítica es **Cloudflare Web Analytics** (gratis, sin cookies, sin PII), que cumple el guardrail 5.
+- Se activa desde el panel de Cloudflare (Analytics & Logs → Web Analytics → el sitio, con inyección automática si el dominio está con proxy). **No agregar scripts de analítica al código** salvo que Andrés lo pida; así se respeta "sin CDNs externas para JS".
+- Si algún día se necesita el snippet manual, va en el layout compartido, con `defer`, y se documenta acá.
+- Los números los mira Andrés en el panel; si quiere que se los interprete, pega capturas o un export. **Nunca** poner tokens de la API de Cloudflare en el chat ni en el repo; si hiciera falta acceso programático, un token de solo lectura va como secreto de GitHub Actions.
+- No medir ni publicar datos de visitantes individuales.
+
 ## Comandos
 ```
 npm install
