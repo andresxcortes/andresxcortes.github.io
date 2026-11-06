@@ -21,7 +21,7 @@ Modo oscuro: opcional, no prioritario para v1. Si se hace, definir los tokens co
 ## Tipografía
 Calibri (usada en los PDF) no está en la web. Usar equivalentes limpios y profesionales, **self-hosted vía Fontsource** (npm), no Google Fonts por `<link>`:
 - **Cuerpo:** Inter (o IBM Plex Sans).
-- **Títulos:** Space Grotesk o Sora para darle un poco de carácter; si se prefiere sobriedad total, Inter en ambos.
+- **Títulos:** Sora (decidido en nov 2026, reemplaza a Space Grotesk; self-hosted vía `@fontsource-variable/sora`); si se prefiere sobriedad total, Inter en ambos.
 - Escala fluida, buen interlineado (~1.55 en cuerpo). Máximo ancho de lectura ~68ch.
 
 ## Layout
