@@ -4,6 +4,7 @@ import HeroBand from '../components/HeroBand.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { services } from '../data/services';
 import { markets } from '../data/regulatory';
+import Flag from '../components/Flag.astro';
 import ServiceTiles from '../components/ServiceTiles.astro';
 import CaseStudyCard from '../components/CaseStudyCard.astro';
 import { getCaseStudies } from '../lib/case-studies';
@@ -13,6 +14,7 @@ const marketMeta: Record<string, { code: string; regulators: string[] }> = {
   Argentina: { code: 'AR', regulators: ['BCRA', 'CNV', 'UIF', 'AAIP'] },
   Mexico: { code: 'MX', regulators: ['CNBV', 'Banxico', 'UIF'] },
   Brazil: { code: 'BR', regulators: ['BCB', 'COAF', 'ANPD'] },
+  Colombia: { code: 'CO', regulators: ['SFC', 'UIAF', 'SIC', 'DIAN'] },
 };
 
 const featured = (await getCaseStudies()).filter((c) => c.data.featured).slice(0, 3);
@@ -88,15 +90,17 @@ const person = {
     <section class="section">
       <h2 class="section-title">Regulatory coverage</h2>
       <p class="prose">
-        Fintech, crypto/VASP, AML/CFT, and data-protection frameworks across the region's three
-        defining markets.
+        Fintech, crypto/VASP, AML/CFT, and data-protection frameworks across the region's key
+        markets.
       </p>
       <ul class="markets">
         {
           markets.map((m) => (
             <li>
               <a href="/regulatory-coverage/">
-                <span class="code">{marketMeta[m.name]?.code}</span>
+                <span class="flagbox">
+                  <Flag code={m.code} height={32} />
+                </span>
                 <span class="name">{m.name}</span>
                 <span class="regs">
                   {(marketMeta[m.name]?.regulators ?? []).map((r) => (
@@ -141,7 +145,7 @@ const person = {
 
   .markets {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
     gap: 1rem;
     margin: 1.25rem 0 0;
     padding: 0;
@@ -171,13 +175,10 @@ const person = {
     box-shadow: 0 10px 24px -14px rgba(31, 42, 68, 0.7);
   }
 
-  .code {
+  .flagbox {
     grid-row: span 2;
-    font-family: var(--font-heading);
-    font-size: 1.9rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--brass-light);
+    display: grid;
+    place-items: center;
   }
 
   .name {

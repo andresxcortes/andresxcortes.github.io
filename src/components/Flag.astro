@@ -1,0 +1,69 @@
+---
+// Simplified flags as inline SVG (flag emoji do not render on Windows). 3:2.
+interface Props {
+  code: 'AR' | 'MX' | 'BR' | 'CO';
+  height?: number;
+}
+const { code, height = 24 } = Astro.props;
+const names = { AR: 'Argentina', MX: 'Mexico', BR: 'Brazil', CO: 'Colombia' };
+---
+
+<svg
+  class="flag"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 30 20"
+  width={(height * 3) / 2}
+  height={height}
+  role="img"
+  aria-label={`Flag of ${names[code]}`}
+>
+  <clipPath id={`flag-clip-${code}`}><rect width="30" height="20" rx="2.5" /></clipPath>
+  <g clip-path={`url(#flag-clip-${code})`}>
+    {
+      code === 'AR' && (
+        <>
+          <rect width="30" height="20" fill="#74ACDF" />
+          <rect y="6.67" width="30" height="6.66" fill="#fff" />
+          <circle cx="15" cy="10" r="2.1" fill="#F6B40E" />
+        </>
+      )
+    }
+    {
+      code === 'MX' && (
+        <>
+          <rect width="10" height="20" fill="#006847" />
+          <rect x="10" width="10" height="20" fill="#fff" />
+          <rect x="20" width="10" height="20" fill="#CE1126" />
+          <ellipse cx="15" cy="10" rx="2.4" ry="2.6" fill="#8A6A3A" />
+        </>
+      )
+    }
+    {
+      code === 'BR' && (
+        <>
+          <rect width="30" height="20" fill="#009739" />
+          <path d="M15 2L27.5 10L15 18L2.5 10Z" fill="#FEDD00" />
+          <circle cx="15" cy="10" r="4.3" fill="#012169" />
+          <path d="M10.9 9.2Q15 8 19.1 10.9" stroke="#fff" stroke-width="0.9" fill="none" />
+        </>
+      )
+    }
+    {
+      code === 'CO' && (
+        <>
+          <rect width="30" height="10" fill="#FCD116" />
+          <rect y="10" width="30" height="5" fill="#003893" />
+          <rect y="15" width="30" height="5" fill="#CE1126" />
+        </>
+      )
+    }
+  </g>
+  <rect width="30" height="20" rx="2.5" fill="none" stroke="rgba(0,0,0,.18)" />
+</svg>
+
+<style>
+  .flag {
+    display: block;
+    flex: none;
+  }
+</style>
