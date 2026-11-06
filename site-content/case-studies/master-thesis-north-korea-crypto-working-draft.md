@@ -18,6 +18,14 @@ summary: "Working draft of my master's thesis (UBA, MSc in Cyber Defence and Cyb
 
 **Master's thesis, Universidad de Buenos Aires (Facultad de Ciencias Económicas), MSc in Cyber Defence and Cybersecurity.** The draft analyzes the Argentine financial system and its crypto on-ramps (PSPs and VASPs), the technical foundations of DeFi, publicly attributed attacks by North Korea-linked groups from 2022 to 2026, the strategic logic behind them, and a set of policy recommendations for Argentina.
 
+**In brief (English).** The draft asks how exposed the Argentine financial system is to North Korea-linked threat actors in crypto and DeFi, and what it needs to defend itself. Its main points:
+
+- **Impact over volume.** North Korea-linked groups are not the most frequent attackers but extract the most value per attack: at least USD 2.02 billion in 2025 according to Chainalysis, and 76% of crypto-hack losses through April 2026 according to TRM Labs. Figures vary by source and are treated as orders of magnitude.
+- **The human link and the on-ramps.** Fake job offers, tailored malware and rapid laundering through bridges, mixers and OTC desks show that protocol-level defenses are not enough. Exchanges, PSPs and VASPs are where stolen funds can exit, and where defenders can act within hours.
+- **Argentina's exposure is structural.** The draft documents no attacks attributed to North Korea against Argentine entities. The exposure comes from the country's high crypto adoption and its on-ramps.
+- **Recommendations.** A financial-sector cybersecurity framework (NIST CSF 2.0, ISO/IEC 27001, CCSS), minimum controls for PSPs and VASPs mapped to North Korean techniques (phishing-resistant authentication, transaction-approval verification, insider-hiring checks), and a low-latency threat-sharing mechanism between public and private actors.
+- **Limits.** Attribution is not judicially proven and is preliminary in several recent cases; the work relies on open sources only.
+
 ## Contenido
 
 - [RESUMEN DEL PROYECTO](#resumen-del-proyecto)
