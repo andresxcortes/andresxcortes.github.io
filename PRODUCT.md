@@ -34,10 +34,16 @@ The personal portfolio site of Andrés Cortés, a Virtual / Fractional CISO and 
 PSP: payment service provider. PSAV / VASP: virtual asset service provider. GRC: governance, risk and compliance. vCISO: virtual or fractional CISO. Use the regulator and law names as they appear in `src/data/regulatory.ts`.
 
 ## Brand commitments
-Sober, senior, evidence-based. Midnight blue and bronze. Direct sentences, ownership verbs where the role was ownership and "supported" where it was support. No hype and no generic template look. See `DESIGN.md` and `site-content/brand.md`.
+Sober, senior, evidence-based, human, honest and kind. Midnight blue and bronze. Direct sentences, ownership verbs where the role was ownership and "supported" where it was support. No hype and no generic template look. See `DESIGN.md` and `site-content/brand.md`.
 
-## Positioning (draft, confirm with Andrés)
-A fractional CISO who has run security governance at exchange scale and has worked with Argentine regulators directly, offered to fintech and crypto teams across the region. The differentiator is concrete regulatory experience (Argentina, Mexico, Brazil), shown through the regulatory coverage page and the research. The site does not compete on volume of services; it competes on specificity.
+## Positioning
+Andrés's own statement (use as written; do not paraphrase in site copy without asking):
+
+> I am a fintech and crypto information security expert who aims to add value from the intersection between design, society and technology. In an era of AI generated slop and moody political humour, I believe in the need of using human connection to engage and solve problems in a creative and direct way.
+>
+> I can help your business to thrive, stay safe and stay compliant on the ground of solid and honest work, avoiding easy bypasses and being honest and kind to everyone involved.
+
+How it shows up in the product: concrete regulatory experience (Argentina, Mexico, Brazil) and published research as proof of "solid and honest work"; a human, direct voice; a design that is deliberate rather than generic. The site competes on specificity and trust, not on volume of services.
 
 ## Operating Context (draft, confirm with Andrés)
 - One person maintains the site. Changes ship through pull requests that Andrés reviews before merging; the site is static (Astro) on GitHub Pages behind Cloudflare.
@@ -55,6 +61,6 @@ A fractional CISO who has run security governance at exchange scale and has work
 1. Specific beats broad: name the regulator, the law and the market.
 2. Show the work: publish research and sourced notes instead of claims.
 3. Anonymise by default; a client appears only with written authorisation.
-4. Calm and credible over clever: restrained motion, no hype, no stock imagery.
+4. Calm and credible over clever: restrained motion, no hype, no stock imagery, nothing that reads as AI-generated filler.
 5. Every page ends in a next step: contact, matrix or the full text.
 6. Fast and private: static pages, self-hosted fonts, cookieless analytics.
