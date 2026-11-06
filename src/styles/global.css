@@ -3,6 +3,7 @@
   --accent-dark: #141c2f;
   --brass: #a8874f;
   --brass-light: #d9c39a;
+  --brass-text: #7a5f2c; /* bronze for small text on light backgrounds (AA); --brass is for lines and icons */
   --ink: #1c1c1e;
   --muted: #5e5a55;
   --card: #f7f4ee;
