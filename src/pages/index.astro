@@ -4,8 +4,16 @@ import HeroBand from '../components/HeroBand.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { services } from '../data/services';
 import { markets } from '../data/regulatory';
+import ServiceTiles from '../components/ServiceTiles.astro';
 import CaseStudyCard from '../components/CaseStudyCard.astro';
 import { getCaseStudies } from '../lib/case-studies';
+
+// Regulators shown on the home tiles; taken from src/data/regulatory.ts.
+const marketMeta: Record<string, { code: string; regulators: string[] }> = {
+  Argentina: { code: 'AR', regulators: ['BCRA', 'CNV', 'UIF', 'AAIP'] },
+  Mexico: { code: 'MX', regulators: ['CNBV', 'Banxico', 'UIF'] },
+  Brazil: { code: 'BR', regulators: ['BCB', 'COAF', 'ANPD'] },
+};
 
 const featured = (await getCaseStudies()).filter((c) => c.data.featured).slice(0, 3);
 
@@ -31,6 +39,7 @@ const person = {
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(person)} />
 
   <HeroBand
+    art
     title="Andrés Cortés"
     subtitle="Virtual CISO & Security Advisory · Fintech & Crypto · Latin America"
   >
@@ -72,9 +81,7 @@ const person = {
 
     <section class="section">
       <h2 class="section-title">Services</h2>
-      <ul class="teaser-list">
-        {services.map((s) => <li>{s.title}</li>)}
-      </ul>
+      <ServiceTiles services={services} />
       <p><a class="more" href="/services/">All services and engagement models →</a></p>
     </section>
 
@@ -88,7 +95,15 @@ const person = {
         {
           markets.map((m) => (
             <li>
-              <a href="/regulatory-coverage/">{m.name}</a>
+              <a href="/regulatory-coverage/">
+                <span class="code">{marketMeta[m.name]?.code}</span>
+                <span class="name">{m.name}</span>
+                <span class="regs">
+                  {(marketMeta[m.name]?.regulators ?? []).map((r) => (
+                    <span class="reg">{r}</span>
+                  ))}
+                </span>
+              </a>
             </li>
           ))
         }
@@ -124,45 +139,74 @@ const person = {
     margin-top: 1.5rem;
   }
 
-  .teaser-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-    gap: 0.75rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .teaser-list li {
-    background: var(--card);
-    border-left: 4px solid var(--accent);
-    padding: 0.75rem 1rem;
-    font-weight: 600;
-    color: var(--accent-dark);
-  }
-
   .markets {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 1rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0 0;
     padding: 0;
     list-style: none;
   }
 
   .markets a {
-    display: block;
-    padding: 0.6rem 1.25rem;
-    background: var(--tint);
-    color: var(--accent-dark);
-    font-family: var(--font-heading);
-    font-weight: 600;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.25rem 1rem;
+    align-items: center;
+    height: 100%;
+    padding: 1.1rem 1.25rem;
+    background: var(--accent);
+    color: #fff;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 10px;
+    border-bottom: 3px solid var(--brass);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
   }
 
   .markets a:hover {
-    background: var(--line);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -14px rgba(31, 42, 68, 0.7);
+  }
+
+  .code {
+    grid-row: span 2;
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--brass-light);
+  }
+
+  .name {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .regs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .reg {
+    padding: 0.1rem 0.5rem;
+    border: 1px solid rgba(217, 195, 154, 0.5);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    color: var(--brass-light);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .markets a {
+      transition: none;
+    }
+    .markets a:hover {
+      transform: none;
+    }
   }
 
   .featured {

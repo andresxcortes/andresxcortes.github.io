@@ -1,17 +1,24 @@
 ---
+import HeroArt from './HeroArt.astro';
+
 interface Props {
   title: string;
   subtitle?: string;
+  /** Show the decorative illustration (home page only). */
+  art?: boolean;
 }
 
-const { title, subtitle } = Astro.props;
+const { title, subtitle, art = false } = Astro.props;
 ---
 
 <section class="hero">
-  <div class="container">
-    <h1>{title}</h1>
-    {subtitle && <p class="subtitle">{subtitle}</p>}
-    <slot />
+  <div class={art ? 'container with-art' : 'container'}>
+    <div class="copy">
+      <h1>{title}</h1>
+      {subtitle && <p class="subtitle">{subtitle}</p>}
+      <slot />
+    </div>
+    {art && <div class="figure"><HeroArt /></div>}
   </div>
 </section>
 
@@ -21,6 +28,27 @@ const { title, subtitle } = Astro.props;
     border-bottom: 3px solid var(--brass);
     color: #fff;
     padding-block: clamp(2.5rem, 7vw, 4.5rem);
+  }
+
+  .with-art {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .figure {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .with-art {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    }
+
+    .figure {
+      display: block;
+    }
   }
 
   h1 {
