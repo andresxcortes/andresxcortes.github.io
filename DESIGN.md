@@ -38,6 +38,26 @@ typography:
     fontFamily: "Inter Variable"
     fontSize: "clamp(1rem, 0.95rem + 0.25vw, 1.0625rem)"
     lineHeight: 1.55
+  display:
+    fontFamily: "Sora Variable"
+    fontSize: "clamp(2rem, 1.5rem + 2.5vw, 3.25rem)"
+    fontWeight: 700
+  headline:
+    fontFamily: "Sora Variable"
+    fontSize: "clamp(1.4rem, 1.2rem + 1vw, 1.9rem)"
+    fontWeight: 600
+  title:
+    fontFamily: "Sora Variable"
+    fontSize: "1.1rem"
+    fontWeight: 600
+  label:
+    fontFamily: "Inter Variable"
+    fontSize: "0.78rem"
+    fontWeight: 700
+    letterSpacing: "0.05em"
+  small:
+    fontFamily: "Inter Variable"
+    fontSize: "0.93rem"
   reader:
     fontFamily: "Source Serif 4 Variable"
     fontSize: "~18px"
@@ -111,4 +131,9 @@ The draft badge uses 3px; small controls use 4px, cards and tiles 10px, expandab
 - Do keep copy anonymised and free of phone numbers (see `CLAUDE.md` guardrails).
 - Don't add stock photos, gradients, or third-party scripts.
 - Don't introduce new colours outside the tokens above; add a token first.
-- Known gaps: some callouts still use a thick left border (about, contact, the portfolio entry page, the reader quote); the `Service` list on the AI-security page has no icons; there is no dark mode.
+- Known gaps: some callouts still use a thick left border (about, contact, the portfolio entry page, the reader quote); the `Service` list on the AI-security page has no icons; there is no dark mode; the type scale has about twenty ad-hoc font sizes that `impeccable detect` reports as off the documented ramp, to consolidate into a small set of tokens in a later pass.
+
+## Decisions on record
+- Nov 2026: headings moved from Space Grotesk to Sora; `brand.md` updated. Space Grotesk remains an installed dependency only because the OG image source still references it.
+- Nov 2026: type tags and card top rules are colour-coded per entry type on purpose, even though the detector flags accent stripes.
+- Nov 2026: Colombia added to the regulatory matrix as a draft pending local validation.
