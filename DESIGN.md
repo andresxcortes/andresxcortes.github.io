@@ -13,11 +13,21 @@ colors:
   tint: "#ECE6DA"
   line: "#D9D1C2"
   background: "#FCFBF8"
+  on-accent: "#FFFFFF"
   tag-engagement: "#1F2A44"
   tag-research: "#A8874F"
   tag-resource: "#2A8071"
   tag-project: "#7A5AA6"
   tag-note: "#3F6BB0"
+  tag-research-bg: "#F1E7D3"
+  tag-research-ink: "#5C4519"
+  tag-resource-bg: "#DCEFEA"
+  tag-resource-ink: "#14554A"
+  tag-project-bg: "#EBE3F3"
+  tag-project-ink: "#46285F"
+  tag-note-bg: "#E1E9F6"
+  tag-note-ink: "#1F3F75"
+  draft: "#8A5A00"
 typography:
   heading:
     fontFamily: "Sora Variable"
@@ -33,6 +43,7 @@ typography:
     fontSize: "~18px"
     lineHeight: 1.68
 rounded:
+  xs: 3px
   sm: 4px
   md: 10px
   lg: 12px
@@ -49,12 +60,13 @@ A sober, senior identity for a fractional CISO working with fintech and crypto t
 
 ## Colors
 
+- **White (`on-accent`)**: text on midnight bands and tiles.
 - **Midnight (`accent`)**: hero and CTA bands, section titles, icon tiles, table headers, market tiles.
 - **Bronze (`brass`)**: rules under section titles, borders of hero and CTA bands, focus rings, hover borders, icon strokes. Use it for lines and icons only. For small text on light backgrounds use `brass-text` (5.5:1 on `card`), because `brass` is about 3:1.
 - **Light bronze (`brass-light`)**: text and icons on midnight (8:1).
 - **Ivory family (`background`, `card`, `tint`, `line`)**: page, cards, highlighted table cells, hairlines.
 - **Ink and muted**: body text and metadata.
-- **Type tags**: one colour family per entry type, shared by the tag chip and the card's top rule. Engagement is midnight with white text. Research is bronze on a light bronze chip. Resource is teal, project is violet, field note is blue. Tag text uses a darker shade than the rule colour (all above 7:1 on their chips).
+- **Type tags**: one colour family per entry type, shared by the tag chip and the card's top rule. Engagement is midnight with white text. Research is bronze on a light bronze chip. Resource is teal, project is violet, field note is blue. Tag text uses a darker shade than the rule colour (all above 7:1 on their chips); the chip and ink pairs are tokens. The amber `draft` colour marks draft entries.
 - No dark mode yet; if added, keep midnight and bronze as the accents.
 
 ## Typography
@@ -77,7 +89,7 @@ Flat by default, with hairline borders (`line`). Interactive cards lift 2px on h
 
 ## Shapes
 
-Small controls use 4px, cards and tiles 10px, expandable cards 12px, tags and regulator chips are pills. Flags are 3:2 with 2.5px corners. Avoid thick one-sided coloured borders on cards.
+The draft badge uses 3px; small controls use 4px, cards and tiles 10px, expandable cards 12px, tags and regulator chips are pills. Flags are 3:2 with 2.5px corners. Avoid thick one-sided coloured borders on rounded cards; the type colour on case cards is an inset 4px top rule (`box-shadow`).
 
 ## Components
 

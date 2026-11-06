@@ -38,10 +38,10 @@ import Flag from './Flag.astro';
     {
       markets.map((m) => (
         <section class="market">
-          <h3>
+          <h2>
             <Flag code={m.code} height={20} />
             {m.name}
-          </h3>
+          </h2>
           <dl>
             {m.cells.map((cell, i) => (
               <div>
@@ -63,7 +63,7 @@ import Flag from './Flag.astro';
     gap: 0.6rem;
   }
 
-  .market h3 {
+  .market h2 {
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -136,7 +136,7 @@ import Flag from './Flag.astro';
       overflow: hidden;
     }
 
-    .market h3 {
+    .market h2 {
       margin: 0;
       padding: 0.75rem 1rem;
       background: var(--accent);
