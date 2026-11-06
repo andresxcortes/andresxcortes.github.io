@@ -1,0 +1,76 @@
+---
+// Decorative illustrations for the engagement models (original SVG, midnight + brass).
+interface Props {
+  kind: 'retainer' | 'project' | 'advisory';
+}
+const { kind } = Astro.props;
+---
+
+<svg class="art" viewBox="0 0 240 150" fill="none" aria-hidden="true" focusable="false">
+  <rect width="240" height="150" rx="10" fill="#1F2A44" />
+  {
+    kind === 'retainer' && (
+      <>
+        <g stroke="#D9C39A" stroke-opacity="0.35" stroke-width="1.5">
+          <circle cx="120" cy="75" r="46" />
+          <circle cx="120" cy="75" r="62" stroke-dasharray="3 6" />
+        </g>
+        <path d="M120 29a46 46 0 0 1 40 23" stroke="#A8874F" stroke-width="4" stroke-linecap="round" />
+        <path d="M156 44l5 9l-10 2" stroke="#A8874F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M120 55l17 6.5v11.5c0 9.5 -7 16.5 -17 18.5c-10 -2 -17 -9 -17 -18.5v-11.5z" fill="#A8874F" />
+        <path d="M112.5 76l5.5 5.5l10 -11" stroke="#1F2A44" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        <g fill="#D9C39A">
+          <rect x="30" y="112" width="26" height="6" rx="3" opacity="0.9" />
+          <rect x="62" y="112" width="26" height="6" rx="3" opacity="0.6" />
+          <rect x="94" y="112" width="26" height="6" rx="3" opacity="0.4" />
+          <rect x="126" y="112" width="26" height="6" rx="3" opacity="0.25" />
+        </g>
+      </>
+    )
+  }
+  {
+    kind === 'project' && (
+      <>
+        <path d="M32 104 C 70 104, 70 52, 108 52 S 150 98, 186 98" stroke="#D9C39A" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round" />
+        <g fill="#1F2A44" stroke="#D9C39A" stroke-width="2">
+          <circle cx="32" cy="104" r="8" />
+          <circle cx="108" cy="52" r="8" />
+        </g>
+        <path d="M28.5 104l2.5 2.5l5 -5.5" stroke="#D9C39A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M104.5 52l2.5 2.5l5 -5.5" stroke="#D9C39A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="186" cy="98" r="8" fill="#A8874F" />
+        <path d="M186 90V52" stroke="#A8874F" stroke-width="3" stroke-linecap="round" />
+        <path d="M186 52h26l-7 8l7 8h-26z" fill="#A8874F" />
+        <g fill="#D9C39A" opacity="0.5">
+          <rect x="30" y="124" width="60" height="5" rx="2.5" />
+          <rect x="100" y="124" width="40" height="5" rx="2.5" />
+        </g>
+      </>
+    )
+  }
+  {
+    kind === 'advisory' && (
+      <>
+        <path d="M44 38h92a10 10 0 0 1 10 10v34a10 10 0 0 1 -10 10h-52l-22 18v-18h-18a10 10 0 0 1 -10 -10v-34a10 10 0 0 1 10 -10z" fill="#A8874F" />
+        <g stroke="#1F2A44" stroke-width="3.5" stroke-linecap="round">
+          <path d="M54 56h66" />
+          <path d="M54 70h44" />
+        </g>
+        <path d="M170 70h30a8 8 0 0 1 8 8v22a8 8 0 0 1 -8 8h-8v12l-14 -12h-8a8 8 0 0 1 -8 -8v-22a8 8 0 0 1 8 -8z" stroke="#D9C39A" stroke-width="2" fill="#1F2A44" />
+        <g fill="#D9C39A">
+          <circle cx="174" cy="89" r="3" />
+          <circle cx="184" cy="89" r="3" />
+          <circle cx="194" cy="89" r="3" />
+        </g>
+      </>
+    )
+  }
+</svg>
+
+<style>
+  .art {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

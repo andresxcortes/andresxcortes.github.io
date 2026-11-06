@@ -1,5 +1,6 @@
 ---
 import { columns, markets } from '../data/regulatory';
+import Flag from './Flag.astro';
 ---
 
 <!-- Desktop: branded matrix table. Mobile: one card per market. -->
@@ -18,7 +19,12 @@ import { columns, markets } from '../data/regulatory';
       {
         markets.map((m) => (
           <tr>
-            <th scope="row">{m.name}</th>
+            <th scope="row">
+              <span class="mk">
+                <Flag code={m.code} height={18} />
+                {m.name}
+              </span>
+            </th>
             {m.cells.map((cell) => (
               <td>{cell}</td>
             ))}
@@ -32,7 +38,10 @@ import { columns, markets } from '../data/regulatory';
     {
       markets.map((m) => (
         <section class="market">
-          <h3>{m.name}</h3>
+          <h3>
+            <Flag code={m.code} height={20} />
+            {m.name}
+          </h3>
           <dl>
             {m.cells.map((cell, i) => (
               <div>
@@ -48,6 +57,18 @@ import { columns, markets } from '../data/regulatory';
 </div>
 
 <style>
+  .mk {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .market h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
   .visually-hidden {
     position: absolute;
     width: 1px;

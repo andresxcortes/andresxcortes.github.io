@@ -1,0 +1,191 @@
+---
+import EngagementArt from './EngagementArt.astro';
+import Icon from './Icon.astro';
+
+// Copy for review: the names and hints come from site-content/pages/services.md;
+// the descriptions are a first draft.
+const models = [
+  {
+    kind: 'retainer' as const,
+    title: 'Fractional vCISO retainer',
+    cadence: 'Monthly',
+    summary: 'Ongoing senior security ownership without a full-time hire.',
+    body: 'A standing monthly engagement: security strategy and roadmap, executive and board reporting, regulator liaison, and day-to-day guidance for your team. Scope and cadence are agreed up front.',
+    fit: 'Companies that need a security leader in the room but not a full-time CISO.',
+    points: ['Security roadmap and priorities', 'Executive and board reporting', 'Regulator and auditor liaison'],
+  },
+  {
+    kind: 'project' as const,
+    title: 'Fixed-scope project',
+    cadence: 'Readiness, licensing, audit',
+    summary: 'A defined deliverable against a deadline.',
+    body: 'A project with a clear scope, deliverables and timeline: regulatory readiness, licensing and registration packages, ISO 27001 or SOC 2 preparation, or audit support.',
+    fit: 'Teams facing a specific licensing, regulatory or audit date.',
+    points: ['Gap assessment and plan', 'Control implementation and evidence', 'Audit and regulator support'],
+  },
+  {
+    kind: 'advisory' as const,
+    title: 'Advisory',
+    cadence: 'Ad-hoc / board',
+    summary: 'Targeted senior input when you need it.',
+    body: 'Short, focused engagements: a second opinion on a security decision, a review ahead of a board meeting, or an expert voice for a conversation with a regulator.',
+    fit: 'Teams with an in-house security function that need senior input on specific questions.',
+    points: ['Second opinions and reviews', 'Board and investor questions', 'Regulator conversation prep'],
+  },
+];
+---
+
+<div class="models">
+  {
+    models.map((m, i) => (
+      <details class="model" name="engagement-models" open={i === 0}>
+        <summary>
+          <span class="thumb">
+            <EngagementArt kind={m.kind} />
+          </span>
+          <span class="head">
+            <span class="cadence">{m.cadence}</span>
+            <strong>{m.title}</strong>
+            <span class="sum">{m.summary}</span>
+          </span>
+          <span class="chev" aria-hidden="true">
+            <Icon name="arrow" size={18} />
+          </span>
+        </summary>
+        <div class="panel">
+          <p>{m.body}</p>
+          <ul>
+            {m.points.map((pt) => (
+              <li>{pt}</li>
+            ))}
+          </ul>
+          <p class="fit">
+            <strong>Best for:</strong> {m.fit}
+          </p>
+          <p>
+            <a class="talk" href="/contact/">Let's talk →</a>
+          </p>
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .models {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .model {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    overflow: hidden;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .model[open],
+  .model:hover {
+    border-color: var(--brass);
+  }
+
+  .model[open] {
+    box-shadow: 0 10px 26px -16px rgba(31, 42, 68, 0.5);
+  }
+
+  summary {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr auto;
+    gap: 1.1rem;
+    align-items: center;
+    padding: 0.9rem 1.1rem 0.9rem 0.9rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: -2px;
+  }
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .cadence {
+    color: var(--brass);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  strong {
+    color: var(--accent-dark);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+  }
+
+  .sum {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .chev {
+    color: var(--brass);
+    transform: rotate(90deg);
+    transition: transform 0.2s ease;
+  }
+
+  .model[open] .chev {
+    transform: rotate(-90deg);
+  }
+
+  .panel {
+    padding: 0.25rem 1.25rem 1.4rem calc(7.5rem + 0.9rem + 1.1rem);
+    max-width: 70ch;
+  }
+
+  .panel p {
+    margin: 0 0 0.9rem;
+  }
+
+  .panel ul {
+    margin: 0 0 1rem;
+    padding-left: 1.2rem;
+  }
+
+  .fit strong {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  .talk {
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    summary {
+      grid-template-columns: 5rem 1fr auto;
+      gap: 0.8rem;
+    }
+
+    .panel {
+      padding: 0.25rem 1.1rem 1.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .model,
+    .chev {
+      transition: none;
+    }
+  }
+</style>
