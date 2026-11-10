@@ -34,11 +34,11 @@ El informe lo declara: «desvía deliberadamente la conversación de los modelos
 
 Un actor estatal con una meta de recaudación no se describe por sus víctimas individuales. Se describe por su método, su ventana de lavado y sus puntos de salida.
 
-### 2. El actor estatal aparece a medias y mezclado
+### 2. El actor estatal aparece a medias y sin distinguir motivaciones
 
 En la sección cripto (5.1) no hay atribución alguna (p. 67). En la 5.2 el actor es «un actor estatal de Asia Oriental» (la RPDC figura solo en el título) y el análisis cubre un único vector: los falsos trabajadores informáticos (p. 69).
 
-En la 6.2 se atribuyen unos USD 2020 millones robados en 2025 a «actores vinculados al este de Asia, que se han posicionado previamente en redes de infraestructura crítica» (p. 81). Las notas al pie de esa frase remiten a un informe de Chainalysis sobre el robo de criptomonedas de Corea del Norte y a un aviso de CISA sobre actores patrocinados por China. Son dos actores con objetivos distintos: uno busca ingresos, el otro acceso persistente. Actores con motivaciones diferentes requieren respuestas defensivas distintas.
+En la 6.2 la edición en español atribuye unos USD 2.020 millones robados en 2025 a «actores vinculados al este de Asia, que se han posicionado previamente en redes de infraestructura crítica» (p. 81). La edición oficial en inglés lo redacta mejor: atribuye la cifra a actores vinculados a Estados de Asia Oriental y habla de actores patrocinados por Estados distintos para el posicionamiento previo en infraestructura crítica. Aun así, ambos grupos van en una sola oración con dos notas al pie: un informe de Chainalysis sobre el robo de criptomonedas de Corea del Norte y el aviso AA24-038A de CISA (sobre actores de la República Popular China). Son dos actores con objetivos distintos: uno busca ingresos, el otro acceso persistente. Actores con motivaciones diferentes requieren respuestas defensivas distintas, y el informe no extrae esa consecuencia.
 
 En mi opinión pesa más el impacto por ataque que la frecuencia. Según Chainalysis, los grupos vinculados a Corea del Norte extrajeron al menos USD 2.020 millones en 2025; según TRM Labs, explican el 76 % de las pérdidas por hackeos cripto hasta abril de 2026. Las cifras varían por fuente y las trato como órdenes de magnitud.
 
@@ -89,7 +89,7 @@ Las nueve acciones van de lo que una entidad puede hacer sola a lo que exige coo
 
 ## Fuentes
 
-- OEA/CICTE, *De la banca al blockchain: ciberseguridad para las personas en el ecosistema financiero de las Américas*, 2026 (ISBN 978-0-8270-8265-6). Las páginas citadas son las impresas en el informe.
+- OEA/CICTE, *De la banca al blockchain: ciberseguridad para las personas en el ecosistema financiero de las Américas*, 2026 (ISBN 978-0-8270-8265-6). Las páginas citadas son las impresas en la edición en español. Cuando el texto difiere, contrasto con la edición oficial en inglés: OEA/CICTE, *From Bank to Blockchain: Cybersecurity for People in the Financial Ecosystem of the Americas*, 2026 (ISBN 978-0-8270-8258-8).
 - Cortés, A., [Cybersecurity Elements of the Argentine Financial System: Managing North Korean Threats in Crypto-Assets](/portfolio/master-thesis-north-korea-crypto-working-draft/), borrador de tesis (UBA), febrero de 2025; capítulos 5.2, 5.3, 7 y 8 actualizados en noviembre de 2026.
 - Comisión Nacional de Valores, Resolución General 1058/2025 (12 de marzo de 2025), [Boletín Oficial, 14 de marzo de 2025](https://www.boletinoficial.gob.ar/detalleAviso/primera/322539/20250314).
 - Banco Central de la República Argentina, [Comunicación «A» 8398](https://www.bcra.gob.ar/archivos/Pdfs/comytexord/A8398.pdf) (5 de febrero de 2026).
