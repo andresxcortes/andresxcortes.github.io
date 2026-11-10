@@ -30,6 +30,10 @@ const caseStudies = defineCollection({
       authors: z.array(z.string()).optional(),
       status: z.string().optional(),
       language: z.string().optional(),
+      // Slug of the same piece in the other language; shows an ES/EN toggle on both pages.
+      translation: z.string().optional(),
+      // Social preview image path under public/ (defaults to /og.png).
+      image: z.string().optional(),
       featured: z.boolean().default(false),
       draft: z.boolean().default(false),
       // Long-form reading layout: serif body, sticky table of contents, chapter navigation.

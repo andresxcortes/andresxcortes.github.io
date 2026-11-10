@@ -2,10 +2,12 @@
 title: "Estándares PCI SSC e IA: hacia un framework de seguridad para entornos de pago"
 summary: "Un framework de seis dominios construido sobre los documentos del PCI SSC sobre IA, con el control mínimo y la evidencia que un evaluador puede auditar en cada uno."
 type: "note"
-status: "As of Nov 7, 2026 · in Spanish"
+status: "As of Nov 10, 2026 · in Spanish"
 date: 2026-11-07
 region: ["LatAm"]
 services: ["Regulatory coverage", "AI security"]
+translation: "pci-ssc-ai-framework"
+image: "/og-pci-es.png"
 language: "Spanish"
 featured: false
 draft: false
