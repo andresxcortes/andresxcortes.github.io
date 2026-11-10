@@ -9,6 +9,8 @@ import {
   contextLine,
   formatDate,
   getCaseStudies,
+  langCode,
+  langLabel,
   typeLabels,
   type CaseStudy,
 } from '../../lib/case-studies';
@@ -31,6 +33,18 @@ const subtitle = [type === 'engagement' ? undefined : typeLabels[type], status, 
 const hasFacts = Boolean(outcome || role || authors || services.length || date || language);
 const { Content, headings } = await render(entry);
 
+// Language toggle: shown when the entry names its translation (frontmatter `translation`).
+const other = entry.data.translation
+  ? (await getCaseStudies()).find((c) => c.id === entry.data.translation)
+  : undefined;
+const bodyLang = langCode(language);
+const langs = other
+  ? [
+      { entry, current: true },
+      { entry: other, current: false },
+    ].sort((a, b) => (langCode(a.entry.data.language) === 'es' ? -1 : 1) - (langCode(b.entry.data.language) === 'es' ? -1 : 1))
+  : [];
+
 // Long-form reading layout (reader: true): serif body, sticky table of contents, chapter navigation.
 const reader = entry.data.reader;
 const short = (text: string) =>
@@ -46,10 +60,46 @@ if (reader) {
 }
 ---
 
-<BaseLayout title={`${title} — Andrés Cortés`} description={summary} type="article">
+<BaseLayout
+  title={`${title} — Andrés Cortés`}
+  description={summary}
+  type="article"
+  image={entry.data.image}
+>
+  {
+    other && (
+      <link
+        slot="head"
+        rel="alternate"
+        hreflang={langCode(other.data.language)}
+        href={`/portfolio/${other.id}/`}
+      />
+    )
+  }
   <HeroBand title={title} subtitle={subtitle} />
 
   <div class="container">
+    {
+      other && (
+        <nav class="lang-toggle" aria-label="Language / Idioma">
+          {langs.map((l) =>
+            l.current ? (
+              <span aria-current="true" lang={langCode(l.entry.data.language)}>
+                {langLabel(l.entry.data.language)}
+              </span>
+            ) : (
+              <a
+                href={`/portfolio/${l.entry.id}/`}
+                lang={langCode(l.entry.data.language)}
+                hreflang={langCode(l.entry.data.language)}
+              >
+                {langLabel(l.entry.data.language)}
+              </a>
+            ),
+          )}
+        </nav>
+      )
+    }
     {draft && <p class="draft-note">Draft — visible only in local dev, not published.</p>}
 
     {hasFacts && (
@@ -113,7 +163,7 @@ if (reader) {
     </section>
     )}
 
-    <section class="section">
+    <section class="section" lang={bodyLang}>
       {
         reader ? (
           <div class="reader" data-reader>
@@ -172,6 +222,41 @@ if (reader) {
 </BaseLayout>
 
 <style>
+  .lang-toggle {
+    display: inline-flex;
+    margin-top: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--card);
+    overflow: hidden;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .lang-toggle > * {
+    padding: 0.4rem 1.1rem;
+    text-decoration: none;
+  }
+
+  .lang-toggle [aria-current] {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .lang-toggle a {
+    color: var(--accent);
+  }
+
+  .lang-toggle a:hover {
+    background: var(--tint);
+  }
+
+  .lang-toggle a:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: -2px;
+  }
+
   .draft-note {
     margin: 1.5rem 0 0;
     padding: 0.6rem 1rem;

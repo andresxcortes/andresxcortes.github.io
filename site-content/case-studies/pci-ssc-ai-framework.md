@@ -6,12 +6,14 @@ status: "As of Nov 10, 2026 · English version of the Spanish original"
 date: 2026-11-10
 region: ["LatAm"]
 services: ["Regulatory coverage", "AI security"]
+translation: "pci-ssc-ia-framework"
+image: "/og-pci-en.png"
 language: "English"
 featured: false
 draft: false
 ---
 
-*This is the English version of the [Spanish original](/portfolio/pci-ssc-ia-framework/).*
+*This is the English version of the Spanish original.*
 
 I recently reviewed the principles of the PCI Security Standards Council (hereafter PCI SSC) on the use of AI in payment environments, and I believe they are a good starting point for discussing the security of these systems. However, PCI SSC's recommendations are guidance, not requirements that an independent assessor can audit.
 

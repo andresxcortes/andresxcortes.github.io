@@ -28,3 +28,12 @@ export function contextLine(data: CaseStudy['data']): string {
 export function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', timeZone: 'UTC' });
 }
+
+/** BCP 47 code for an entry's `language` frontmatter ("Spanish" → "es"); defaults to English. */
+export function langCode(language?: string): 'es' | 'en' {
+  return language?.toLowerCase().startsWith('span') ? 'es' : 'en';
+}
+
+export function langLabel(language?: string): string {
+  return langCode(language) === 'es' ? 'Español' : 'English';
+}
