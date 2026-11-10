@@ -1,5 +1,5 @@
 ---
-title: "PCI DSS and AI: Toward a Security Framework for Payment Environments"
+title: "PCI SSC and AI: Toward a Security Framework for Payment Environments"
 summary: "A six-domain framework built on PCI SSC's documents on AI, with the minimum control and the evidence an assessor can audit in each domain."
 type: "note"
 status: "As of Nov 10, 2026 · English version of the Spanish original"
@@ -15,7 +15,7 @@ draft: false
 
 I recently reviewed the principles of the PCI Security Standards Council (hereafter PCI SSC) on the use of AI in payment environments, and I believe they are a good starting point for discussing the security of these systems. However, PCI SSC's recommendations are guidance, not requirements that an independent assessor can audit.
 
-Standardization is one of the foundations of the cybersecurity industry. When we use standards such as PCI DSS, we know globally what we are talking about. This article proposes a six-domain framework built on PCI SSC's standards, which draws from other sources only what is needed to put it into practice: what the standard limits, how it is controlled, and what evidence is presented to the assessor.
+Standardization is one of the foundations of the cybersecurity industry. When standards such as PCI DSS are used, it is known globally what is being talked about. In this article I propose a six-domain framework built on PCI SSC's documents, which draws from other sources only what is needed to put it into practice: what the standard limits, how it is controlled, and what evidence is presented to the assessor.
 
 ## The foundation: what PCI SSC establishes
 
@@ -23,7 +23,7 @@ The authority of this article is PCI SSC, and I rely on three of its documents. 
 
 The second is the guide *Integrating Artificial Intelligence in PCI Assessments* (version 1.0, March 2025). It regulates the use of AI by assessors, not by assessed entities, but it leaves a logic that applies to both: AI is a tool, not an assessor; final responsibility for the software is human; the use of AI tools must be disclosed to the client and documented; and results are validated independently. For an entity that uses its own AI to monitor compliance, the guide is explicit: the assessor **cannot rely on that AI's evaluation of the evidence** and must carry out sampling and interviews independently (section 4.1).
 
-The third is the information supplement *Security Considerations for AI Systems* (version 1.0, September 2026), the most extensive of the three and the closest to what this article is after. It states from the outset that it is guidance and does not replace any PCI SSC requirement (p. 1). On scope, it treats AI like any other technology: an AI system that receives account data, or that has unrestricted connectivity to systems that process it, is part of the cardholder data environment, and one that connects to the CDE or affects its security is also within the scope of the PCI DSS standard (p. 15).
+The third is the information supplement *Security Considerations for AI Systems* (version 1.0, September 2026), the most extensive of the three and the closest to what this article is after. It states from the outset that it is guidance and does not replace any PCI SSC requirement (p. 1). On scope, it treats AI like any other technology: an AI system that receives account data, or that has unrestricted connectivity to systems that process it, is part of the cardholder data environment, and those that connect to the CDE or could affect its security are also within the scope of the PCI DSS standard (p. 15).
 
 To limit the risks of AI, the supplement proposes "least agency" and preventing any single system from combining access to sensitive data, exposure to untrusted content, and external communication, a combination it calls the "lethal trifecta"; if a task requires all three, it is split across different agents (pp. 4 and 11). It allows moving from approving every action to supervising the whole (*human-over-the-loop*) under certain conditions, but not when the agent accesses cleartext cardholder data (pp. 8-9 and 23). Finally, it does not cover the use of AI to make payments (p. 1), a limit worth keeping in mind later on.
 
@@ -89,7 +89,7 @@ In Argentina, payment service providers covered by the [BCRA's Communication "A"
 
 - None of the PCI SSC sources requires this framework. The principles and the supplement are guidance that does not modify requirements, and the assessment guide regulates the assessor, not the entity.
 - Two of the five sources are from vendors with a commercial interest (CrowdStrike and PolicyLayer). Their examples, such as the hundreds of unaccounted-for agents the playbook describes in two assessments (p. 6) or dev.to's USD 1,000 per-transaction limits, are cited as illustration, without independent verification.
-- The PCI DSS mapping combines requirements cited by the PCI SSC supplement (1.2.4, 3.3.1, 8.4.2, 12.5.1, 12.5.2, 12.8 and 12.10), requirements taken from dev.to (1, 7, 10 and 12) and two requirements of my own (6 and 11). This article does not claim to be an official guide or to replace any PCI SSC certification guidance, and it is strongly recommended that any effort to achieve or maintain such certification be carried out through consulting with a verified assessor.
+- The PCI DSS mapping combines requirements cited by the PCI SSC supplement (1.2.4, 3.3.1, 8.4.2, 12.5.1, 12.5.2, 12.8 and 12.10), requirements taken from dev.to (1, 7, 10 and 12) and two requirements of my own (6 and 11). This article does not claim to be an official guide or to replace any PCI SSC certification guidance, and I strongly recommend that any effort to achieve or maintain such certification be carried out through consulting with a verified assessor.
 - The PCI SSC supplement does not cover the use of AI to make payments (p. 1). What the framework says about agents that pay therefore rests on the blog's principles and the dev.to article, not on the supplement.
 
 ## Sources
