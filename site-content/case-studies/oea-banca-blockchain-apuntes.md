@@ -6,6 +6,7 @@ status: "As of Nov 7, 2026 · in Spanish"
 date: 2026-11-07
 region: ["Argentina", "LatAm"]
 services: ["Regulatory coverage", "Threat-informed security programs", "North Korea-linked threats in crypto"]
+translation: "oea-bank-to-blockchain-notes"
 language: "Spanish"
 featured: false
 draft: false
