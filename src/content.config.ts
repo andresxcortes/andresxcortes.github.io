@@ -30,8 +30,10 @@ const caseStudies = defineCollection({
       authors: z.array(z.string()).optional(),
       status: z.string().optional(),
       language: z.string().optional(),
-      // Slug of the same piece in the other language; shows an ES/EN toggle on both pages.
+      // Slug of the same piece in the other language; shows a language toggle on both pages.
       translation: z.string().optional(),
+      // Slugs of the same piece in other languages (3+ languages); combined with `translation`.
+      translations: z.array(z.string()).default([]),
       // Social preview image path under public/ (defaults to /og.png).
       image: z.string().optional(),
       featured: z.boolean().default(false),

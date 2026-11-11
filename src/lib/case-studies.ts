@@ -29,11 +29,20 @@ export function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', timeZone: 'UTC' });
 }
 
-/** BCP 47 code for an entry's `language` frontmatter ("Spanish" → "es"); defaults to English. */
-export function langCode(language?: string): 'es' | 'en' {
-  return language?.toLowerCase().startsWith('span') ? 'es' : 'en';
+/** BCP 47 code for an entry's `language` frontmatter ("Spanish" → "es", "Portuguese" → "pt-BR"); defaults to English. */
+export type LangCode = 'es' | 'en' | 'pt-BR';
+
+export function langCode(language?: string): LangCode {
+  const l = language?.toLowerCase() ?? '';
+  if (l.startsWith('span')) return 'es';
+  if (l.startsWith('port')) return 'pt-BR';
+  return 'en';
 }
 
 export function langLabel(language?: string): string {
-  return langCode(language) === 'es' ? 'Español' : 'English';
+  const labels: Record<LangCode, string> = { es: 'Español', en: 'English', 'pt-BR': 'Português' };
+  return labels[langCode(language)];
 }
+
+/** Display order of the language toggle: Spanish, English, Portuguese. */
+export const langOrder: LangCode[] = ['es', 'en', 'pt-BR'];
