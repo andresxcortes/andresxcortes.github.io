@@ -11,6 +11,7 @@ import {
   getCaseStudies,
   langCode,
   langLabel,
+  langOrder,
   typeLabels,
   type CaseStudy,
 } from '../../lib/case-studies';
@@ -33,16 +34,17 @@ const subtitle = [type === 'engagement' ? undefined : typeLabels[type], status, 
 const hasFacts = Boolean(outcome || role || authors || services.length || date || language);
 const { Content, headings } = await render(entry);
 
-// Language toggle: shown when the entry names its translation (frontmatter `translation`).
-const other = entry.data.translation
-  ? (await getCaseStudies()).find((c) => c.id === entry.data.translation)
-  : undefined;
+// Language toggle: shown when the entry names its translations (frontmatter `translation` / `translations`).
+const relatedIds = [entry.data.translation, ...entry.data.translations].filter(Boolean) as string[];
+const allEntries = relatedIds.length ? await getCaseStudies() : [];
+const others = relatedIds
+  .map((id) => allEntries.find((c) => c.id === id))
+  .filter((c): c is NonNullable<typeof c> => Boolean(c));
 const bodyLang = langCode(language);
-const langs = other
-  ? [
-      { entry, current: true },
-      { entry: other, current: false },
-    ].sort((a, b) => (langCode(a.entry.data.language) === 'es' ? -1 : 1) - (langCode(b.entry.data.language) === 'es' ? -1 : 1))
+const langs = others.length
+  ? [{ entry, current: true }, ...others.map((o) => ({ entry: o, current: false }))].sort(
+      (x, y) => langOrder.indexOf(langCode(x.entry.data.language)) - langOrder.indexOf(langCode(y.entry.data.language)),
+    )
   : [];
 
 // Long-form reading layout (reader: true): serif body, sticky table of contents, chapter navigation.
@@ -67,20 +69,20 @@ if (reader) {
   image={entry.data.image}
 >
   {
-    other && (
+    others.map((o) => (
       <link
         slot="head"
         rel="alternate"
-        hreflang={langCode(other.data.language)}
-        href={`/portfolio/${other.id}/`}
+        hreflang={langCode(o.data.language)}
+        href={`/portfolio/${o.id}/`}
       />
-    )
+    ))
   }
   <HeroBand title={title} subtitle={subtitle} />
 
   <div class="container">
     {
-      other && (
+      others.length > 0 && (
         <nav class="lang-toggle" aria-label="Language / Idioma">
           {langs.map((l) =>
             l.current ? (

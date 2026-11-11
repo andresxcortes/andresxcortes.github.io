@@ -1,0 +1,112 @@
+<!doctype html>
+<!--
+  Images for the Ueno Bank note. Query: ?lang=es|en|pt&kind=og|lessons|ethics
+  og = 1200x630, lessons / ethics = 1200x1000. Rendered with Playwright or scripts/og/render.sh.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face { font-family: 'Inter'; src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2'); font-weight: 100 900; }
+      @font-face { font-family: 'Space Grotesk'; src: url('../../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2') format('woff2'); font-weight: 300 700; }
+      html, body { margin: 0; }
+      body { background: #1f2a44; color: #fff; font-family: 'Inter', sans-serif; position: relative; overflow: hidden; }
+      body.og { width: 1200px; height: 630px; }
+      body.card { width: 1200px; height: 1000px; }
+      .band { position: absolute; left: 0; right: 0; bottom: 0; height: 18px; background: #a8874f; }
+      .rule { width: 96px; height: 6px; background: #a8874f; }
+      h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.02em; margin: 0; line-height: 1.02; }
+      .gold { color: #d9c39a; }
+      .who { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 26px; }
+      .who small { display: block; margin-top: 4px; font-family: 'Inter'; font-weight: 400; font-size: 22px; color: #c9c3b6; }
+      /* og */
+      .og .inner { position: absolute; inset: 0; padding: 80px 96px; display: flex; flex-direction: column; box-sizing: border-box; width: 820px; }
+      .og .rule { margin-bottom: 36px; }
+      .og h1 { font-size: 84px; }
+      .og .sub { margin: 28px 0 0; font-size: 36px; line-height: 1.25; font-weight: 600; color: #d9c39a; }
+      .og .who { margin-top: auto; }
+      .og svg { position: absolute; right: 70px; top: 110px; }
+      /* cards */
+      .card .inner { padding: 64px 72px 0; box-sizing: border-box; }
+      .card h1 { font-size: 56px; margin-top: 28px; }
+      .card .kick { margin-top: 14px; font-size: 26px; color: #d9c39a; font-weight: 600; }
+      .list { margin-top: 36px; display: flex; flex-direction: column; gap: 18px; }
+      .row { display: flex; gap: 26px; align-items: center; background: rgba(255,255,255,0.06); border-left: 6px solid #a8874f; padding: 20px 28px; }
+      .num { font-family: 'Space Grotesk'; font-weight: 700; font-size: 56px; color: #a8874f; width: 56px; flex: none; text-align: center; }
+      .row b { display: block; font-size: 30px; line-height: 1.2; }
+      .row span { display: block; font-size: 23px; line-height: 1.3; color: #c9c3b6; margin-top: 4px; }
+      .card .who { position: absolute; left: 72px; bottom: 46px; }
+      .card .foot { position: absolute; right: 72px; bottom: 52px; font-size: 20px; color: #c9c3b6; }
+      .ethic .row { border-left-color: #d9c39a; }
+      .ethic .row.hi { background: rgba(168,135,79,0.38); border-left-color: #fff; }
+      .quote { margin-top: 26px; font-size: 25px; color: #d9c39a; font-weight: 600; line-height: 1.35; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div class="band"></div>
+    <script>
+      const q = new URLSearchParams(location.search);
+      const lang = q.get('lang') || 'es', kind = q.get('kind') || 'og';
+      document.body.className = kind === 'og' ? 'og' : 'card' + (kind === 'ethics' ? ' ethic' : '');
+      const T = {
+        es: {
+          t: 'Ueno Bank', s: 'No fue un hackeo, y aun así es un caso de ciberseguridad',
+          lt: 'Cinco lecciones de ciberseguridad', lk: 'Del caso Ueno Bank (Paraguay, noviembre de 2026)',
+          L: [['La integridad de lo que se reporta es un control', 'Un control que depende de la información de la propia entidad no es independiente.'],
+              ['El adversario con más privilegios a veces es el dueño', 'Partes vinculadas: grafos de beneficiarios, segregación y denuncia independiente.'],
+              ['El incidente es la indisponibilidad total', 'Vista única del cliente, nómina y alias portables, ejercicios de resolución.'],
+              ['La confianza se mueve a velocidad digital', 'El dinero sale a velocidad de app y vuelve a velocidad legal.'],
+              ['La etiqueta no es el control', '«Neobanco» o «regulado» describen un estatus, no una madurez.']],
+          et: '¿A quién responde el CISO?', ek: 'Cánones del código de ética de ISC2, en orden de prioridad',
+          E: [['Proteger a la sociedad, el bien común y la confianza pública', 'Canon 1'], ['Actuar con honor, honestidad, justicia, responsabilidad y legalidad', 'Canon 2'],
+              ['Brindar servicio diligente y competente a los mandantes', 'Canon 3 (el empleador)'], ['Promover y proteger la profesión', 'Canon 4']],
+          eq: 'Cuando el dueño es el adversario, el orden de los cánones importa.'
+        },
+        en: {
+          t: 'Ueno Bank', s: 'Not a hack, and still a cybersecurity case',
+          lt: 'Five cybersecurity lessons', lk: 'From the Ueno Bank case (Paraguay, November 2026)',
+          L: [['The integrity of what is reported is a control', 'A control that relies on the institution’s own data is not independent.'],
+              ['The adversary with most privileges is sometimes the owner', 'Related parties: beneficial-ownership graphs, segregation, independent whistleblowing.'],
+              ['The incident is total unavailability', 'A single customer view, portable payroll and aliases, resolution drills.'],
+              ['Trust moves at digital speed', 'Money leaves at app speed and returns at legal speed.'],
+              ['The label is not the control', '“Neobank” or “regulated” describe a status, not a maturity.']],
+          et: 'Who does the CISO answer to?', ek: 'ISC2 Code of Ethics canons, in priority order',
+          E: [['Protect society, the common good and public trust', 'Canon 1'], ['Act honorably, honestly, justly, responsibly and legally', 'Canon 2'],
+              ['Provide diligent and competent service to principals', 'Canon 3 (the employer)'], ['Advance and protect the profession', 'Canon 4']],
+          eq: 'When the owner is the adversary, the order of the canons matters.'
+        },
+        pt: {
+          t: 'Ueno Bank', s: 'Não foi um hackeamento, e ainda assim é um caso de cibersegurança',
+          lt: 'Cinco lições de cibersegurança', lk: 'Do caso Ueno Bank (Paraguai, novembro de 2026)',
+          L: [['A integridade do que se reporta é um controle', 'Um controle que depende da informação da própria instituição não é independente.'],
+              ['O adversário com mais privilégios às vezes é o dono', 'Partes relacionadas: grafos de beneficiários, segregação e denúncia independente.'],
+              ['O incidente é a indisponibilidade total', 'Visão única do cliente, folha e aliases portáveis, exercícios de resolução.'],
+              ['A confiança se move à velocidade digital', 'O dinheiro sai à velocidade do app e volta à velocidade legal.'],
+              ['O rótulo não é o controle', '“Neobanco” ou “regulado” descrevem um status, não uma maturidade.']],
+          et: 'A quem o CISO responde?', ek: 'Cânones do código de ética da ISC2, em ordem de prioridade',
+          E: [['Proteger a sociedade, o bem comum e a confiança pública', 'Cânone 1'], ['Agir com honra, honestidade, justiça, responsabilidade e legalidade', 'Cânone 2'],
+              ['Prestar serviço diligente e competente aos mandantes', 'Cânone 3 (o empregador)'], ['Promover e proteger a profissão', 'Cânone 4']],
+          eq: 'Quando o dono é o adversário, a ordem dos cânones importa.'
+        }
+      }[lang];
+      const who = '<div class="who">Andrés Cortés<small>andresxcortes.dev</small></div>';
+      let h;
+      if (kind === 'og') {
+        h = `<div class="inner"><div class="rule"></div><h1>${T.t}</h1><p class="sub">${T.s}</p>${who}</div>
+        <svg width="260" height="360" viewBox="0 0 260 360"><g fill="none" stroke="#a8874f" stroke-width="5">
+        <rect x="20" y="60" width="220" height="240" rx="16" stroke-opacity=".5"/><path d="M20 150h220" stroke-opacity=".5"/>
+        <path d="M60 230l50-40 40 30 50-60" stroke="#d9c39a" stroke-width="8" stroke-linejoin="round"/></g>
+        <circle cx="200" cy="160" r="12" fill="#a8874f"/></svg>`;
+      } else if (kind === 'lessons') {
+        h = `<div class="inner"><div class="rule"></div><h1>${T.lt}</h1><div class="kick">${T.lk}</div>
+        <div class="list">${T.L.map((x, i) => `<div class="row"><div class="num">${i + 1}</div><div><b>${x[0]}</b><span>${x[1]}</span></div></div>`).join('')}</div></div>${who}`;
+      } else {
+        h = `<div class="inner"><div class="rule"></div><h1>${T.et}</h1><div class="kick">${T.ek}</div>
+        <div class="list">${T.E.map((x, i) => `<div class="row${i === 0 || i === 2 ? ' hi' : ''}"><div class="num">${i + 1}</div><div><b>${x[0]}</b><span>${x[1]}</span></div></div>`).join('')}</div>
+        <div class="quote">${T.eq}</div></div>${who}`;
+      }
+      document.getElementById('root').innerHTML = h;
+    </script>
+  </body>
+</html>
