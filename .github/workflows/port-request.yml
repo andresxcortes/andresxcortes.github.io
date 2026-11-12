@@ -1,0 +1,54 @@
+# Opens a review issue in the paired repository for every change merged to main.
+# It never copies code, merges or deploys: a person/agent implements the port as a PR.
+name: Port request
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  request:
+    runs-on: ubuntu-latest
+    # Ports landing here carry "[port-from: ...]" and must not bounce back.
+    if: ${{ !contains(github.event.head_commit.message, '[port-from:') }}
+    steps:
+      - uses: actions/github-script@v7
+        env:
+          TARGET_REPO: ${{ vars.PORT_TARGET_REPO }}
+        with:
+          github-token: ${{ secrets.BRIDGE_TOKEN }}
+          script: |
+            const allowed = ['andresxcortes/andresxcortes.github.io', 'andresxcortes/andres-cortes-workbook'];
+            const source = `${context.repo.owner}/${context.repo.repo}`;
+            const target = process.env.TARGET_REPO;
+            if (!allowed.includes(source) || !allowed.includes(target) || source === target) {
+              core.setFailed(`Repository pair not allowed: ${source} -> ${target}`); return;
+            }
+            const { before, after, compare } = context.payload;
+            const short = after.slice(0, 7);
+            const title = `Port ${source}@${short}`;
+            const [owner, repo] = target.split('/');
+            const found = await github.rest.search.issuesAndPullRequests({ q: `repo:${target} is:issue in:title "${title}"` });
+            if (found.data.total_count > 0) { core.info('Already requested'); return; }
+            const diff = await github.rest.repos.compareCommits({ ...context.repo, base: before, head: after }).catch(() => null);
+            const ignore = /(^|\/)(node_modules|dist|\.output|\.env)|routeTree\.gen\.ts$|lock/;
+            const files = (diff?.data.files ?? []).filter(f => !ignore.test(f.filename))
+              .map(f => `- \`${f.status}\` ${f.filename}`).join('\n') || '- (see compare link)';
+            const commits = context.payload.commits.map(c => `- ${c.id.slice(0,7)} ${c.message.split('\n')[0]}`).join('\n');
+            await github.rest.issues.create({ owner, repo, title, labels: ['port-request'], body:
+`Source: ${source}
+Base: \`${before}\`
+Head: \`${after}\`
+Compare: ${compare}
+
+### Commits
+${commits}
+
+### Changed files
+${files}
+
+### Checklist
+- [ ] Implement equivalent behavior in this repository (no blind file copy)
+- [ ] Check the recorded base still matches; if this repo changed the same area, resolve by review
+- [ ] Open a PR whose merge commit message includes \`[port-from: ${source}@${short}]\`
+- [ ] Close this issue when that PR merges` });
