@@ -21,7 +21,7 @@ El diferenciador central de Andrés es la **experiencia regulatoria concreta en 
 - Todo el copy del sitio va en **inglés** (mercado primario cross-border / LatAm-España). La versión en español queda para una fase posterior.
 
 ## Diseño
-Seguí `site-content/brand.md`: paleta azul medianoche (#1F2A44) + bronce (#A8874F), tipografía, ritmo, y los cuatro componentes que vienen del brochure — **header/hero band**, **grilla de tarjetas de servicios**, **tabla de matriz regulatoria**, **CTA band**. El sitio tiene que leerse como la misma identidad que el CV y el brochure.
+**Cambio de identidad decidido el 2026-11-12:** negro, azul y blanco, **sin bronce** (ver `docs/decisions/2026-11-brand-and-lovable.md`). Los hex nuevos se fijan en el PR de identidad; hasta entonces `site-content/brand.md` (azul medianoche #1F2A44 + bronce #A8874F) describe la marca anterior. Seguí `brand.md` para tipografía, ritmo y los cuatro componentes que vienen del brochure — **header/hero band**, **grilla de tarjetas de servicios**, **tabla de matriz regulatoria**, **CTA band**. El sitio tiene que leerse como la misma identidad que el CV y el brochure.
 
 ## Guardrails — NO NEGOCIABLES (perfil de seguridad)
 El repo es **público**. Andrés trabaja en seguridad; una filtración acá es un daño reputacional directo.
@@ -31,6 +31,9 @@ El repo es **público**. Andrés trabaja en seguridad; una filtración acá es u
 4. **Sin secretos** en el repo: nada de API keys, tokens, `.env` versionado. Respetar `.gitignore`.
 5. Si agregás analítica, que sea privacy-friendly y sin PII sin aviso.
 6. Antes de cada commit, revisá que no se cuele nada de lo anterior.
+
+## Lovable (coexistencia)
+Lovable se usa como taller de diseño, **no** como segundo despliegue. Este repo Astro sirve `andresxcortes.dev`; Lovable vive en su propio proyecto/repo y se traspasa por handoff + PRs. Detalle y reglas en `docs/decisions/2026-11-brand-and-lovable.md` y `docs/handoffs/lovable-design-cv-seo.md`. No conectar Lovable a este repo ni a este dominio.
 
 ## Ruta por fases
 **Fase 1 — Esqueleto vivo (deploy primero).** Scaffold de Astro en este repo (mantené `CLAUDE.md`, `README.md`, `.github/`, `site-content/`, `.gitignore`). Configurá `astro.config.mjs` con el `site` correcto y sin `base`. El workflow ya está en `.github/workflows/deploy.yml` (verificá que la versión de `withastro/action` sea la vigente en github.com/withastro/action). Meta: un placeholder ya publicado y visible en https://andresxcortes.github.io. No sigas hasta que el pipeline verde funcione.

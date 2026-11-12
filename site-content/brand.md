@@ -1,3 +1,5 @@
+> **Nota (2026-11-12):** la identidad fue reemplazada por negro/azul/blanco sin bronce; ver `docs/decisions/2026-11-brand-and-lovable.md`. Este archivo describe la marca anterior hasta que se implemente el PR de identidad.
+
 # Brand & design tokens
 
 Objetivo: que el sitio se lea como la misma identidad que el CV y el brochure vCISO — sobrio, senior, fintech/seguridad, nada "template genérico".
