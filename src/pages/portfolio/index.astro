@@ -20,10 +20,10 @@ const sections = groups
 ---
 
 <BaseLayout
-  title="Portfolio — Andrés Cortés"
+  title="Work — Andrés Cortés"
   description="Anonymized case studies in security, GRC, and regulatory compliance for fintech and crypto across Latin America."
 >
-  <HeroBand title="Portfolio" subtitle="Engagements · Research · Resources · Projects">
+  <HeroBand title="Work" subtitle="Engagements · Research · Resources · Field notes · Projects">
     <p class="lead">
       Client case studies are anonymized by default: sector, stage, and outcome — never client
       names or confidential detail.
@@ -32,13 +32,32 @@ const sections = groups
 
   <div class="container">
     {
+      sections.length > 0 && (
+        <div class="controls" id="work-controls" hidden>
+          <div class="chips" role="group" aria-label="Filter by category">
+            <button type="button" class="chip" data-filter="all" aria-pressed="true">All work</button>
+            {sections.map((g) => (
+              <button type="button" class="chip" data-filter={g.type} aria-pressed="false">
+                {g.heading}
+              </button>
+            ))}
+          </div>
+          <label class="search">
+            <span class="sr-only">Search work</span>
+            <input type="search" id="work-search" placeholder="Search title or topic" autocomplete="off" />
+          </label>
+          <p class="count" id="work-count" aria-live="polite"></p>
+        </div>
+      )
+    }
+    {
       sections.length > 0 ? (
         sections.map((g) => (
-          <section class="section">
+          <section class="section group" data-group={g.type}>
             <h2 class="section-title">{g.heading}</h2>
             <ul class="grid">
               {g.entries.map((entry) => (
-                <li>
+                <li data-type={g.type} data-text={`${entry.data.title} ${entry.data.summary} ${(entry.data.services ?? []).join(' ')}`.toLowerCase()}>
                   <CaseStudyCard entry={entry} />
                 </li>
               ))}
@@ -51,12 +70,126 @@ const sections = groups
         </section>
       )
     }
+    <p id="work-empty" class="muted empty" hidden>No work matches that filter. Try another category or clear the search.</p>
   </div>
 
   <CtaBand />
 </BaseLayout>
 
+<script>
+  // Progressive enhancement: without JS the full grouped list is shown.
+  const controls = document.getElementById('work-controls');
+  if (controls) {
+    controls.hidden = false;
+    const chips = [...controls.querySelectorAll<HTMLButtonElement>('.chip')];
+    const search = document.getElementById('work-search') as HTMLInputElement;
+    const count = document.getElementById('work-count')!;
+    const empty = document.getElementById('work-empty')!;
+    const items = [...document.querySelectorAll<HTMLElement>('.group li[data-type]')];
+    const groups = [...document.querySelectorAll<HTMLElement>('.group')];
+    let filter = 'all';
+    const apply = () => {
+      const q = search.value.trim().toLowerCase();
+      let shown = 0;
+      for (const li of items) {
+        const ok = (filter === 'all' || li.dataset.type === filter) && (!q || li.dataset.text!.includes(q));
+        li.hidden = !ok;
+        if (ok) shown++;
+      }
+      for (const g of groups) g.hidden = !g.querySelector('li:not([hidden])');
+      empty.hidden = shown > 0;
+      count.textContent = `${shown} ${shown === 1 ? 'entry' : 'entries'}`;
+    };
+    chips.forEach((c) =>
+      c.addEventListener('click', () => {
+        filter = c.dataset.filter!;
+        chips.forEach((x) => x.setAttribute('aria-pressed', String(x === c)));
+        apply();
+      }),
+    );
+    search.addEventListener('input', apply);
+    apply();
+  }
+</script>
+
 <style>
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    padding-top: var(--section-gap);
+  }
+
+  .controls[hidden],
+  [hidden] {
+    display: none !important;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .chip {
+    font: inherit;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .chip:hover {
+    color: var(--ink);
+    border-color: var(--accent);
+  }
+
+  .chip[aria-pressed='true'] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+  }
+
+  .search input {
+    font: inherit;
+    font-size: 0.9rem;
+    width: min(100%, 18rem);
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--card);
+    color: var(--ink);
+  }
+
+  .search input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .count {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .empty {
+    margin-top: var(--section-gap);
+  }
+
   .grid {
     display: grid;
     grid-template-columns: 1fr;
