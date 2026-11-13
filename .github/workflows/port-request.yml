@@ -35,20 +35,22 @@ jobs:
             const files = (diff?.data.files ?? []).filter(f => !ignore.test(f.filename))
               .map(f => `- \`${f.status}\` ${f.filename}`).join('\n') || '- (see compare link)';
             const commits = context.payload.commits.map(c => `- ${c.id.slice(0,7)} ${c.message.split('\n')[0]}`).join('\n');
-            await github.rest.issues.create({ owner, repo, title, labels: ['port-request'], body:
-`Source: ${source}
-Base: \`${before}\`
-Head: \`${after}\`
-Compare: ${compare}
-
-### Commits
-${commits}
-
-### Changed files
-${files}
-
-### Checklist
-- [ ] Implement equivalent behavior in this repository (no blind file copy)
-- [ ] Check the recorded base still matches; if this repo changed the same area, resolve by review
-- [ ] Open a PR whose merge commit message includes \`[port-from: ${source}@${short}]\`
-- [ ] Close this issue when that PR merges` });
+            const body = [
+              `Source: ${source}`,
+              `Base: \`${before}\``,
+              `Head: \`${after}\``,
+              `Compare: ${compare}`,
+              '',
+              '### Commits',
+              commits,
+              '',
+              '### Changed files',
+              files,
+              '',
+              '### Checklist',
+              '- [ ] Implement equivalent behavior in this repository (no blind file copy)',
+              '- [ ] Check the recorded base still matches; if this repo changed the same area, resolve by review',
+              `- [ ] Open a PR whose merge commit message includes \`[port-from: ${source}@${short}]\``,
+              '- [ ] Close this issue when that PR merges',
+            ].join('\n');
+            await github.rest.issues.create({ owner, repo, title, labels: ['port-request'], body });
