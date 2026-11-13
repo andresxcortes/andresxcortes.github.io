@@ -1,139 +1,70 @@
 ---
 name: Andrés Cortés — Portfolio
-description: Design record of the portfolio site, written from the implementation in November 2026. Source of truth for tokens is src/styles/global.css.
+description: Design record of the portfolio site after the Nov 2026 identity change (black, blue, white; no bronze). Source of truth for tokens is src/styles/global.css.
 colors:
-  accent: "#1F2A44"
-  accent-dark: "#141C2F"
-  brass: "#A8874F"
-  brass-light: "#D9C39A"
-  brass-text: "#7A5F2C"
-  ink: "#1C1C1E"
-  muted: "#5E5A55"
-  card: "#F7F4EE"
-  tint: "#ECE6DA"
-  line: "#D9D1C2"
-  background: "#FCFBF8"
-  on-accent: "#FFFFFF"
-  tag-engagement: "#1F2A44"
-  tag-research: "#A8874F"
-  tag-resource: "#2A8071"
-  tag-project: "#7A5AA6"
-  tag-note: "#3F6BB0"
-  tag-research-bg: "#F1E7D3"
-  tag-research-ink: "#5C4519"
-  tag-resource-bg: "#DCEFEA"
-  tag-resource-ink: "#14554A"
-  tag-project-bg: "#EBE3F3"
-  tag-project-ink: "#46285F"
-  tag-note-bg: "#E1E9F6"
-  tag-note-ink: "#1F3F75"
-  draft: "#8A5A00"
+  background: "#060606"
+  card: "#0F0F0F"
+  band: "#0F0F0F"
+  tint: "#161616"
+  line: "#292929"
+  ink: "#F5F5F5"
+  muted: "#9E9E9E"
+  accent: "#4C9FFF"
+  accent-soft: "#82BAFF"
+  accent-wash: "#122032"
+  on-accent: "#060606"
+  signal: "#F5C761"
+  signal-wash: "#1F1A0C"
+  logo-blue: "#0A84FF"
 typography:
   heading:
-    fontFamily: "Sora Variable"
+    fontFamily: "Manrope Variable"
     fontWeight: 600
     lineHeight: 1.2
-    letterSpacing: "-0.01em"
+    letterSpacing: "0"
   body:
-    fontFamily: "Inter Variable"
+    fontFamily: "Manrope Variable"
     fontSize: "clamp(1rem, 0.95rem + 0.25vw, 1.0625rem)"
     lineHeight: 1.55
-  display:
-    fontFamily: "Sora Variable"
-    fontSize: "clamp(2rem, 1.5rem + 2.5vw, 3.25rem)"
-    fontWeight: 700
-  headline:
-    fontFamily: "Sora Variable"
-    fontSize: "clamp(1.4rem, 1.2rem + 1vw, 1.9rem)"
-    fontWeight: 600
-  title:
-    fontFamily: "Sora Variable"
-    fontSize: "1.1rem"
-    fontWeight: 600
-  label:
-    fontFamily: "Inter Variable"
-    fontSize: "0.78rem"
-    fontWeight: 700
-    letterSpacing: "0.05em"
-  small:
-    fontFamily: "Inter Variable"
-    fontSize: "0.93rem"
+  mono:
+    fontFamily: "JetBrains Mono"
   reader:
     fontFamily: "Source Serif 4 Variable"
-    fontSize: "~18px"
+    fontSize: "about 18px"
     lineHeight: 1.68
-rounded:
-  xs: 3px
-  sm: 4px
-  md: 10px
-  lg: 12px
-  pill: 999px
-spacing:
-  container-max: 1100px
-  gutter: "clamp(1rem, 4vw, 2rem)"
-  section-gap: "clamp(3rem, 7vw, 5rem)"
 ---
 
-## Overview
+# Design
 
-A sober, senior identity for a fractional CISO working with fintech and crypto teams in Latin America: midnight blue and bronze on a warm off-white, with generous space between sections. It must read as the same identity as the CV and the vCISO brochure. Imagery is original (SVG illustrations, line icons, flags); no stock photography. Tone is direct and evidence-based. Copy is in English; long research texts keep their original language.
+Decision record: `docs/decisions/2026-11-brand-and-lovable.md`. Reference design: the Lovable site, via `docs/handoffs/` and `design-handoff.md` in the Lovable repo.
 
-## Colors
+## Identity
+Black, blue and white, one dark theme. Neutrals are pure gray (no green undertone). **No bronze or gold anywhere**, with one exception: the amber `signal` colour, used only for "in progress" / draft notices (e.g. the AWS certification, draft banners).
 
-- **White (`on-accent`)**: text on midnight bands and tiles.
-- **Midnight (`accent`)**: hero and CTA bands, section titles, icon tiles, table headers, market tiles.
-- **Bronze (`brass`)**: rules under section titles, borders of hero and CTA bands, focus rings, hover borders, icon strokes. Use it for lines and icons only. For small text on light backgrounds use `brass-text` (5.5:1 on `card`), because `brass` is about 3:1.
-- **Light bronze (`brass-light`)**: text and icons on midnight (8:1).
-- **Ivory family (`background`, `card`, `tint`, `line`)**: page, cards, highlighted table cells, hairlines.
-- **Ink and muted**: body text and metadata.
-- **Type tags**: one colour family per entry type, shared by the tag chip and the card's top rule. Engagement is midnight with white text. Research is bronze on a light bronze chip. Resource is teal, project is violet, field note is blue. Tag text uses a darker shade than the rule colour (all above 7:1 on their chips); the chip and ink pairs are tokens. The amber `draft` colour marks draft entries.
-- No dark mode yet; if added, keep midnight and bronze as the accents.
+- **Logo**: slim abstract X, blue `#0A84FF` upper-left stroke and white lower-right stroke on black (`public/logo-x.svg`, `public/favicon.svg`). Supplied by the Lovable design handoff; do not redraw.
+- **Name**: "Andrés Cortés" followed by a blue dot.
+- **Motto**: 平常心是道, shown on the home hero only, marked `lang="zh-Hans"`, no translation. Manrope has no CJK glyphs, so the system font draws them.
+
+## Colour roles
+- `accent` (blue): links, eyebrows, section-title rules, focus rings, the active nav item, the language toggle and progress bar.
+- `band` / `card`: hero, CTA and table-header surfaces; cards. Separated by hairline `line` borders.
+- `ink` / `muted`: primary and secondary text.
+- `signal` (amber): in-progress and draft states only.
+- Type tags use blue and gray families, never green or purple.
 
 ## Typography
-
-- **Headings**: Sora (variable, self-hosted via Fontsource), tight tracking. Section titles scale with `clamp(1.4rem, 1.2rem + 1vw, 1.9rem)`.
-- **Body**: Inter (variable, self-hosted). Reading width capped at 68ch (`.prose`).
-- **Reader layout** (`reader: true` entries): Source Serif 4 at about 18px, line height 1.68, 68ch column, manual hyphenation only. Headings stay in Sora.
-- Fonts are never loaded from Google Fonts or a CDN.
+Manrope (variable, self-hosted via Fontsource) for name, headings and body; JetBrains Mono for small labels. Letter-spacing 0. Reader layout (`reader: true`) keeps Source Serif 4, ~18px, line height 1.68, 68ch.
 
 ## Layout
-
-- Content container 1100px with fluid side gutters; the regulatory matrix may use up to 1240px.
-- Sections are separated by `section-gap`; every section title carries a 2px bronze rule.
-- Grids use `repeat(auto-fill|auto-fit, minmax(min(100%, Npx), 1fr))`, so they collapse to one column on phones without breakpoints. Breakpoints in use: 640, 720, 800 and 900px.
-- No horizontal page scroll at 390px.
-
-## Elevation & Depth
-
-Flat by default, with hairline borders (`line`). Interactive cards lift 2px on hover with a soft midnight shadow (`0 8px 22px -12px rgba(31,42,68,.45)`) and switch the border to bronze. An open expandable card keeps a slightly stronger shadow. Hover motion is disabled under `prefers-reduced-motion`.
-
-## Shapes
-
-The draft badge uses 3px; small controls use 4px, cards and tiles 10px, expandable cards 12px, tags and regulator chips are pills. Flags are 3:2 with 2.5px corners. Avoid thick one-sided coloured borders on rounded cards; the type colour on case cards is an inset 4px top rule (`box-shadow`).
+Max width 1100px, fluid gutters, generous section gaps, 2px blue rule under every section title. Sticky header with blur: logo + name, nav Services · Coverage · Work · CV · Contact. Footer: © line, "Independent security leadership · Latin America", email and LinkedIn.
 
 ## Components
+Hero band, service cards and tiles, regulatory matrix, CTA band, case-study card with type tags, language toggle, flags (AR, MX, BR, CO). Same patterns as the earlier brochure identity, recoloured.
 
-- **Hero band**: full-width midnight band, 3px bronze bottom border, name and subtitle, optional decorative illustration (home only, hidden under 900px).
-- **Service tile** (home): ivory card with a midnight icon tile, title, one-line blurb and an arrow; links to `/services/#<slug>`.
-- **Service card** (services): same icon tile, full description; highlighted with a bronze ring when targeted by its anchor.
-- **Engagement model**: expandable `details` card with an original illustration, cadence label in `brass-text`, summary, then body, bullet points, "Best for" and a contact link. One open at a time.
-- **Market tile**: midnight tile with flag, country name, regulator chips, 3px bronze bottom border.
-- **Regulatory matrix**: midnight header row, country column on `tint` with flag, small readable cells; one card per market on mobile.
-- **Case-study card**: colour-coded type tag, byline, title (whole card clickable), summary, optional outcome.
-- **CTA band**: midnight band with a bronze top border, email and LinkedIn.
-- **Flag and Icon**: inline SVG only. Service icons are original glyphs; mail and LinkedIn come from Tabler Icons (MIT).
-- **Reader layout**: sticky table of contents, chapter navigation, progress bar, footnotes (see `CLAUDE.md`).
+## Do / don't
+- Do keep links and rules blue and text white or gray.
+- Don't introduce bronze, gold, green or purple. Don't add Google Fonts links; fonts are self-hosted.
+- Don't use amber for anything except "in progress" and draft notices.
 
-## Do's and Don'ts
-
-- Do keep one idea per section and let whitespace do the work.
-- Do use bronze for lines and icons, and `brass-text` for small bronze text.
-- Do keep copy anonymised and free of phone numbers (see `CLAUDE.md` guardrails).
-- Don't add stock photos, gradients, or third-party scripts.
-- Don't introduce new colours outside the tokens above; add a token first.
-- Known gaps: some callouts still use a thick left border (about, contact, the portfolio entry page, the reader quote); the `Service` list on the AI-security page has no icons; there is no dark mode; the type scale has about twenty ad-hoc font sizes that `impeccable detect` reports as off the documented ramp, to consolidate into a small set of tokens in a later pass.
-
-## Decisions on record
-- Nov 2026: headings moved from Space Grotesk to Sora; `brand.md` updated. Space Grotesk remains an installed dependency only because the OG image source still references it.
-- Nov 2026: type tags and card top rules are colour-coded per entry type on purpose, even though the detector flags accent stripes.
-- Nov 2026: Colombia added to the regulatory matrix as a draft pending local validation.
+## Changelog
+- Nov 2026: identity changed from midnight blue + bronze (Sora/Inter) to black, blue and white (Manrope/JetBrains Mono). Social images (`scripts/og/`, `npm`-free Playwright script `render.cjs`) re-rendered in the new palette.

@@ -7,29 +7,20 @@
   <head>
     <meta charset="utf-8" />
     <style>
-      @font-face {
-        font-family: 'Inter';
-        src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');
-        font-weight: 100 900;
-      }
-      @font-face {
-        font-family: 'Space Grotesk';
-        src: url('../../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2') format('woff2');
-        font-weight: 300 700;
-      }
+      @font-face { font-family: 'Manrope'; src: url('../../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2') format('woff2'); font-weight: 200 800; }
       html, body { margin: 0; }
       body {
         width: 1200px; height: 630px; overflow: hidden;
-        background: #1f2a44; color: #fff; font-family: 'Inter', sans-serif; position: relative;
+        background: #060606; color: #fff; font-family: 'Manrope', sans-serif; position: relative;
       }
       .inner { position: absolute; inset: 0; padding: 88px 96px; display: flex; flex-direction: column; width: 640px; box-sizing: content-box; }
-      .rule { width: 96px; height: 6px; background: #a8874f; margin-bottom: 40px; }
-      h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 92px; line-height: 1; letter-spacing: -0.02em; margin: 0; }
-      .sub { margin: 28px 0 0; font-size: 38px; line-height: 1.25; font-weight: 600; color: #d9c39a; }
-      .who { margin-top: auto; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 28px; }
-      .who small { display: block; margin-top: 6px; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 24px; color: #c9c3b6; }
+      .rule { width: 96px; height: 6px; background: #4c9fff; margin-bottom: 40px; }
+      h1 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 92px; line-height: 1; letter-spacing: -0.02em; margin: 0; }
+      .sub { margin: 28px 0 0; font-size: 38px; line-height: 1.25; font-weight: 600; color: #82baff; }
+      .who { margin-top: auto; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 28px; }
+      .who small { display: block; margin-top: 6px; font-family: 'Manrope', sans-serif; font-weight: 400; font-size: 24px; color: #9e9e9e; }
       svg { position: absolute; right: 80px; top: 100px; }
-      .band { position: absolute; left: 0; right: 0; bottom: 0; height: 18px; background: #a8874f; }
+      .band { position: absolute; left: 0; right: 0; bottom: 0; height: 18px; background: #4c9fff; }
     </style>
   </head>
   <body>
@@ -40,11 +31,11 @@
       <div class="who">Andrés Cortés<small>andresxcortes.dev</small></div>
     </div>
     <svg width="400" height="400" viewBox="-200 -200 400 400" aria-hidden="true">
-      <circle r="165" fill="none" stroke="#a8874f" stroke-opacity="0.35" stroke-width="2" />
-      <g id="spokes" stroke="#a8874f" stroke-opacity="0.6" stroke-width="2"></g>
+      <circle r="165" fill="none" stroke="#4c9fff" stroke-opacity="0.35" stroke-width="2" />
+      <g id="spokes" stroke="#4c9fff" stroke-opacity="0.6" stroke-width="2"></g>
       <g id="nodes"></g>
-      <circle r="62" fill="#a8874f" />
-      <text id="c" text-anchor="middle" y="18" font-family="Space Grotesk" font-weight="700" font-size="52" fill="#1f2a44"></text>
+      <circle r="62" fill="#4c9fff" />
+      <text id="c" text-anchor="middle" y="18" font-family="Manrope" font-weight="700" font-size="52" fill="#060606"></text>
     </svg>
     <div class="band"></div>
     <script>
@@ -64,7 +55,7 @@
         l.setAttribute('x2', x); l.setAttribute('y2', y);
         document.getElementById('spokes').appendChild(l);
         const g = document.createElementNS(ns, 'g');
-        g.innerHTML = `<circle cx="${x}" cy="${y}" r="34" fill="#1f2a44" stroke="#d9c39a" stroke-width="3"/><text x="${x}" y="${y + 12}" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="34" fill="#fff">${i + 1}</text>`;
+        g.innerHTML = `<circle cx="${x}" cy="${y}" r="34" fill="#060606" stroke="#82baff" stroke-width="3"/><text x="${x}" y="${y + 12}" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="34" fill="#fff">${i + 1}</text>`;
         document.getElementById('nodes').appendChild(g);
       }
     </script>

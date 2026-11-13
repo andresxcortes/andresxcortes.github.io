@@ -1,18 +1,23 @@
 :root {
-  --accent: #1f2a44;
-  --accent-dark: #141c2f;
-  --brass: #a8874f;
-  --brass-light: #d9c39a;
-  --brass-text: #7a5f2c; /* bronze for small text on light backgrounds (AA); --brass is for lines and icons */
-  --ink: #1c1c1e;
-  --muted: #5e5a55;
-  --card: #f7f4ee;
-  --tint: #ece6da;
-  --line: #d9d1c2;
-  --bg: #fcfbf8;
+  color-scheme: dark;
+  --bg: #060606;
+  --ink: #f5f5f5;
+  --muted: #9e9e9e;
+  --card: #0f0f0f;
+  --tint: #161616;
+  --line: #292929;
+  --band: #0f0f0f; /* hero / CTA / table-header surfaces */
+  --accent: #4c9fff; /* links, eyebrows, rules, focus ring */
+  --accent-soft: #82baff;
+  --accent-dark: #f5f5f5; /* titles and link hover on dark surfaces */
+  --accent-wash: #122032;
+  --signal: #f5c761; /* amber: "in progress" / draft notices only */
+  --signal-wash: #1f1a0c;
+  --on-accent: #060606;
 
-  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Sora Variable', var(--font-body);
+  --font-body: 'Manrope Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Manrope Variable', var(--font-body);
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --max-width: 1100px;
   --gutter: clamp(1rem, 4vw, 2rem);
@@ -41,9 +46,10 @@ body {
 h1,
 h2,
 h3 {
+  font-weight: 600;
   font-family: var(--font-heading);
   line-height: 1.2;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 a {
@@ -52,11 +58,11 @@ a {
 }
 
 a:hover {
-  color: var(--accent-dark);
+  color: var(--accent-soft);
 }
 
 :focus-visible {
-  outline: 2px solid var(--brass);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -74,13 +80,13 @@ a:hover {
   padding-bottom: var(--section-gap);
 }
 
-/* Section title with a thin brass rule underneath */
+/* Section title with a thin blue rule underneath */
 .section-title {
-  color: var(--accent);
+  color: var(--ink);
   font-size: clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
   margin: 0 0 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--brass);
+  border-bottom: 2px solid var(--accent);
 }
 
 .prose {
