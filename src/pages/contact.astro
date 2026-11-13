@@ -21,18 +21,66 @@ import Icon from '../components/Icon.astro';
         <li>
           <span class="label"><Icon name="mail" /> Email</span>
           <a href="mailto:consulting@andresxcortes.dev">consulting@andresxcortes.dev</a>
+          <button type="button" class="copy" id="copy-email" data-email="consulting@andresxcortes.dev" hidden>Copy address</button>
+          <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
         </li>
         <li>
           <span class="label"><Icon name="linkedin" /> LinkedIn</span>
           <a href="https://linkedin.com/in/andresxcortes" rel="noopener">linkedin.com/in/andresxcortes</a>
         </li>
       </ul>
+      <h2 class="section-title">A useful starting point</h2>
+      <ul class="prose">
+        <li>Your company's sector and markets.</li>
+        <li>The security, audit or regulatory challenge.</li>
+        <li>Any deadlines or milestones.</li>
+      </ul>
+      <p class="muted">Please keep confidential documents and sensitive client information out of an initial email.</p>
       <p class="muted">Based in Buenos Aires · working remotely across LatAm, the US, and Europe.</p>
     </section>
   </div>
 </BaseLayout>
 
+<script>
+  const btn = document.getElementById('copy-email') as HTMLButtonElement | null;
+  const status = document.getElementById('copy-status');
+  if (btn && status) {
+    btn.hidden = false;
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.email!);
+        status.textContent = 'Copied to clipboard';
+      } catch {
+        status.textContent = 'Could not copy — select the address and copy it manually';
+      }
+      setTimeout(() => (status.textContent = ''), 3000);
+    });
+  }
+</script>
+
 <style>
+  .copy {
+    align-self: flex-start;
+    font: inherit;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .copy:hover {
+    border-color: var(--accent);
+  }
+
+  .copy-status {
+    min-height: 1.2em;
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+
   .channels {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));

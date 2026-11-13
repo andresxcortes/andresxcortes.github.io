@@ -53,6 +53,13 @@ const person = {
   </HeroBand>
 
   <div class="container">
+    <ul class="stats" aria-label="At a glance">
+      <li><strong>60+</strong><span>Concurrent GRC initiatives</span></li>
+      <li><strong>4</strong><span>LatAm markets covered</span></li>
+      <li><strong>14</strong><span>Regulators covered</span></li>
+      <li><strong>5</strong><span>Security certifications</span></li>
+    </ul>
+
     <section class="section prose">
       <p>
         Most recently Argentina CISO at <strong>Bitso</strong>, Latin America's largest crypto
@@ -139,6 +146,39 @@ const person = {
 </BaseLayout>
 
 <style>
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: 1px;
+    margin: var(--section-gap) 0 0;
+    padding: 0;
+    list-style: none;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .stats li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--card);
+  }
+
+  .stats strong {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .stats span {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
   .motto {
     margin: 1.25rem 0 0;
     font-size: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
