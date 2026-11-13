@@ -34,7 +34,7 @@ The personal portfolio site of Andrés Cortés, a Virtual / Fractional CISO and 
 PSP: payment service provider. PSAV / VASP: virtual asset service provider. GRC: governance, risk and compliance. vCISO: virtual or fractional CISO. Use the regulator and law names as they appear in `src/data/regulatory.ts`.
 
 ## Brand commitments
-Sober, senior, evidence-based, human, honest and kind. Midnight blue and bronze. Direct sentences, ownership verbs where the role was ownership and "supported" where it was support. No hype and no generic template look. See `DESIGN.md` and `site-content/brand.md`.
+Sober, senior, evidence-based, human, honest and kind. Black, blue and white. Direct sentences, ownership verbs where the role was ownership and "supported" where it was support. No hype and no generic template look. See `DESIGN.md` and `site-content/brand.md`.
 
 ## Positioning
 Andrés's own statement (use as written; do not paraphrase in site copy without asking):

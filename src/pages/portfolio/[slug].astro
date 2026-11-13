@@ -243,7 +243,7 @@ if (reader) {
 
   .lang-toggle [aria-current] {
     background: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
   }
 
   .lang-toggle a {
@@ -255,15 +255,15 @@ if (reader) {
   }
 
   .lang-toggle a:focus-visible {
-    outline: 2px solid var(--brass);
+    outline: 2px solid var(--accent);
     outline-offset: -2px;
   }
 
   .draft-note {
     margin: 1.5rem 0 0;
     padding: 0.6rem 1rem;
-    border-left: 4px solid #8a5a00;
-    background: #fdf6e8;
+    border-left: 4px solid var(--signal);
+    background: var(--signal-wash);
     font-size: 0.9rem;
   }
 
@@ -333,7 +333,7 @@ if (reader) {
   }
 
   .case-body :global(th) {
-    background: var(--accent);
+    background: var(--band);
     color: #fff;
     font-family: var(--font-heading);
     font-weight: 600;
@@ -398,7 +398,7 @@ if (reader) {
     font-family: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
     font-size: clamp(1.1rem, 1.05rem + 0.2vw, 1.19rem);
     line-height: 1.68;
-    color: #202124;
+    color: var(--ink);
     hyphens: manual;
     text-wrap: pretty;
     font-optical-sizing: auto;
@@ -424,7 +424,7 @@ if (reader) {
   .reader-body :global(blockquote) {
     margin: 1.25rem 0;
     padding: 0.2rem 1.1rem;
-    border-left: 4px solid var(--brass);
+    border-left: 4px solid var(--accent);
     background: var(--card);
     font-size: 0.95em;
   }
@@ -496,7 +496,7 @@ if (reader) {
 
   .reader-body :global(.anchor) {
     margin-left: 0.45em;
-    color: var(--brass);
+    color: var(--accent);
     text-decoration: none;
     font-weight: 400;
     opacity: 0;
@@ -561,7 +561,7 @@ if (reader) {
   }
 
   .toc-title a {
-    color: var(--brass);
+    color: var(--accent);
     text-decoration: none;
   }
 
@@ -590,7 +590,7 @@ if (reader) {
   }
 
   .toc a[aria-current='true'] {
-    border-left-color: var(--brass);
+    border-left-color: var(--accent);
     background: var(--card);
     font-weight: 600;
     color: var(--accent);
@@ -659,7 +659,7 @@ if (reader) {
     display: block;
     height: 100%;
     width: calc(var(--read, 0) * 100%);
-    background: var(--brass);
+    background: var(--accent);
   }
 
   .to-index {
@@ -670,7 +670,7 @@ if (reader) {
     padding: 0.5rem 0.9rem;
     border-radius: 999px;
     background: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
     font-size: 0.85rem;
     font-weight: 600;
     text-decoration: none;
@@ -681,7 +681,7 @@ if (reader) {
   }
 
   .to-index:hover {
-    color: #fff;
+    color: var(--on-accent);
   }
 
   .to-index.visible {

@@ -87,11 +87,11 @@ const models = [
 
   .model[open],
   .model:hover {
-    border-color: var(--brass);
+    border-color: var(--accent);
   }
 
   .model[open] {
-    box-shadow: 0 10px 26px -16px rgba(31, 42, 68, 0.5);
+    box-shadow: 0 10px 26px -16px rgba(0, 0, 0, 0.5);
   }
 
   summary {
@@ -109,7 +109,7 @@ const models = [
   }
 
   summary:focus-visible {
-    outline: 2px solid var(--brass);
+    outline: 2px solid var(--accent);
     outline-offset: -2px;
   }
 
@@ -120,7 +120,7 @@ const models = [
   }
 
   .cadence {
-    color: var(--brass-text);
+    color: var(--accent);
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -139,7 +139,7 @@ const models = [
   }
 
   .chev {
-    color: var(--brass);
+    color: var(--accent);
     transform: rotate(90deg);
     transition: transform 0.2s ease;
   }

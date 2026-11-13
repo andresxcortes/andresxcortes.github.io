@@ -7,7 +7,7 @@ description: "Information security and technical program leader — 10+ years ac
 
 Information security and technical program leader with 10+ years delivering complex, regulated initiatives across crypto, fintech, and global banking.
 
-Through 2026 I was **Argentina CISO and Information Security PMO Manager at Bitso** — Latin America's largest crypto exchange — owning security strategy for the regulated Argentine operation, acting as the designated security contact to Argentine regulators (CNV, UIF, BCRA, AAIP), and co-running a portfolio of 60+ concurrent GRC initiatives with a 15+ person team. I led VASP compliance (CNV RG 1058/2025) and contributed to ISO 27001 certification (2025), SOC 2, and the firm's data-privacy framework.
+Through May 2026 I was **Argentina CISO and Information Security PMO Manager at Bitso** — Latin America's largest crypto exchange — owning security strategy for the regulated Argentine operation, acting as the designated security contact to Argentine regulators (CNV, UIF, BCRA, AAIP), and co-running a portfolio of 60+ concurrent GRC initiatives with a 15+ person team. I led VASP compliance (CNV RG 1058/2025) and contributed to ISO 27001 certification (2025), SOC 2, and the firm's data-privacy framework.
 
 Before Bitso I was a Product Owner at **JPMorgan Chase** (Corporate & Investment Banking and Legal Solutions) and held product and analyst roles across First Data, Globant, and others — a background that means I understand the business the security function has to protect.
 
