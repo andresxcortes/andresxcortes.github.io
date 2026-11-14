@@ -19,6 +19,7 @@ const stripHtmlComments = defineMdastPlugin({
 export default defineConfig({
   site: 'https://andresxcortes.dev',
   trailingSlash: 'always',
+  redirects: { '/about': '/cv' },
   integrations: [sitemap()],
   markdown: {
     processor: satteri({ mdastPlugins: [stripHtmlComments] }),

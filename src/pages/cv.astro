@@ -1,0 +1,409 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroBand from '../components/HeroBand.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Flag from '../components/Flag.astro';
+
+// Source: site-content/pages/cv.md. Employment dates are never inferred: only what is stated there.
+const certifications = [
+  { name: 'CISM', status: 'completed' },
+  { name: 'PMP', status: 'completed' },
+  { name: 'ISC2 CC', status: 'completed' },
+  { name: 'CSPO', status: 'completed' },
+  { name: 'Google Cloud Digital Leader', status: 'completed' },
+  { name: 'AWS Certified Cloud Practitioner', status: 'in-progress' },
+] as const;
+const completed = certifications.filter((c) => c.status === 'completed').length;
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Andrés Cortés',
+    jobTitle: 'Information security & technical program leader',
+    url: Astro.site?.href,
+    sameAs: ['https://linkedin.com/in/andresxcortes'],
+  },
+};
+---
+
+<BaseLayout
+  title="CV — Andrés Cortés"
+  description="Curriculum vitae: information security and technical program leader, 10+ years across crypto, fintech and global banking."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(person)} slot="head" />
+
+  <div class="screen-only">
+    <HeroBand title="Curriculum vitae" subtitle="Professional background">
+      <p class="lead">Information security &amp; technical program leader.</p>
+    </HeroBand>
+  </div>
+
+  <div class="container cv">
+    <header class="cv-head">
+      <div>
+        <h2 class="name">Andrés Cortés</h2>
+        <p class="role">Information security &amp; technical program leader</p>
+        <p class="contact">
+          <a href="mailto:consulting@andresxcortes.dev">consulting@andresxcortes.dev</a> ·
+          <a href="https://andresxcortes.dev/">andresxcortes.dev</a> ·
+          <a href="https://linkedin.com/in/andresxcortes" rel="noopener">linkedin.com/in/andresxcortes</a>
+        </p>
+      </div>
+      <p class="actions screen-only">
+        <button type="button" id="print-cv" class="btn" hidden>Print / Save PDF</button>
+        <a class="btn ghost" href="https://linkedin.com/in/andresxcortes" rel="noopener">LinkedIn</a>
+      </p>
+    </header>
+
+    <section class="block">
+      <h2 class="section-title">Profile</h2>
+      <p class="prose">
+        10+ years delivering complex, regulated initiatives across crypto, fintech and global
+        banking. Now advising fintech and crypto teams as a fractional CISO.
+      </p>
+      <ul class="flags" aria-label="Markets">
+        {
+          (['AR', 'MX', 'BR', 'CO'] as const).map((code) => (
+            <li>
+              <Flag code={code} height={18} />
+              <span>{{ AR: 'Argentina', MX: 'Mexico', BR: 'Brazil', CO: 'Colombia' }[code]}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2 class="section-title">Experience</h2>
+
+      <article class="job">
+        <p class="when">Current focus</p>
+        <h3>Fractional CISO &amp; Security Advisor</h3>
+        <p class="org">Independent advisory</p>
+        <p>Security leadership and regulatory advisory for fintech and crypto teams across Latin America.</p>
+        <ul>
+          <li>Security strategy, risk priorities and executive reporting</li>
+          <li>ISO 27001, SOC 2, VASP compliance and data privacy</li>
+          <li>Security PMO, governance and incident response readiness</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <p class="when">Through May 2026</p>
+        <h3>Argentina CISO &amp; Information Security PMO Manager</h3>
+        <p class="org">Bitso</p>
+        <p>
+          Owned security strategy for the regulated Argentine operation and acted as the designated
+          security contact to CNV, UIF, BCRA and AAIP.
+        </p>
+        <ul>
+          <li>Co-ran 60+ concurrent GRC initiatives with a 15+ person team</li>
+          <li>Led VASP compliance under CNV RG 1058/2025</li>
+          <li>Contributed to ISO 27001 certification (2025), SOC 2 and the data-privacy framework</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <p class="when">Earlier experience</p>
+        <h3>Product Owner</h3>
+        <p class="org">JPMorgan Chase</p>
+        <p>Product ownership across Corporate &amp; Investment Banking and Legal Solutions.</p>
+      </article>
+
+      <article class="job">
+        <p class="when">Earlier experience</p>
+        <h3>Product &amp; analyst roles</h3>
+        <p class="org">First Data · Globant</p>
+        <p>Product and analysis experience supporting complex business and technology initiatives.</p>
+      </article>
+    </section>
+
+    <div class="two">
+      <section class="block">
+        <h2 class="section-title">Education</h2>
+        <ul class="plain">
+          <li>
+            <strong>MSc, Cyber Defence &amp; Cybersecurity</strong>
+            <span>Universidad de Buenos Aires · thesis working draft</span>
+          </li>
+          <li>
+            <strong>Postgraduate Diploma, Project Management</strong>
+            <span>UTN FRBA</span>
+          </li>
+          <li>
+            <strong>BSc, Information Systems</strong>
+            <span>Universidad de Buenos Aires</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2 class="section-title">Languages</h2>
+        <ul class="plain">
+          <li><strong>Spanish</strong><span>Native</span></li>
+          <li><strong>English</strong><span>C2</span></li>
+          <li><strong>Portuguese</strong><span>B2</span></li>
+          <li><strong>German</strong><span>B1</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="block">
+      <h2 class="section-title">Certifications <span class="count">{completed} completed</span></h2>
+      <ul class="certs">
+        {
+          certifications.map((c) => (
+            <li class={c.status}>
+              <strong>{c.name}</strong>
+              <span>{c.status === 'completed' ? 'Completed' : 'In progress'}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+
+  <div class="screen-only"><CtaBand heading="Work with me" /></div>
+</BaseLayout>
+
+<script>
+  const btn = document.getElementById('print-cv') as HTMLButtonElement | null;
+  if (btn) {
+    btn.hidden = false;
+    btn.addEventListener('click', () => window.print());
+  }
+</script>
+
+<style>
+  .cv {
+    padding-bottom: var(--section-gap);
+  }
+
+  .cv-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: var(--section-gap);
+  }
+
+  .name {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  }
+
+  .role {
+    margin: 0.25rem 0 0.5rem;
+    color: var(--muted);
+  }
+
+  .contact {
+    margin: 0;
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .btn {
+    font: inherit;
+    font-weight: 600;
+    padding: 0.5rem 1.1rem;
+    border-radius: 6px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn.ghost {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  .btn[hidden] {
+    display: none;
+  }
+
+  .block {
+    margin-top: var(--section-gap);
+  }
+
+  .count {
+    margin-left: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .flags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .flags li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .job {
+    padding: 1.1rem 0 1.1rem 1.25rem;
+    border-left: 2px solid var(--line);
+    margin-bottom: 0.5rem;
+    break-inside: avoid;
+  }
+
+  .job:first-of-type {
+    border-left-color: var(--accent);
+  }
+
+  .when {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+
+  .job h3 {
+    margin: 0.25rem 0 0;
+    font-size: 1.15rem;
+  }
+
+  .org {
+    margin: 0 0 0.5rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .job p {
+    margin-block: 0 0.5rem;
+  }
+
+  .job ul {
+    margin: 0;
+    padding-left: 1.1em;
+  }
+
+  .two {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 0 2.5rem;
+  }
+
+  .plain {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .plain li {
+    display: flex;
+    flex-direction: column;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+    break-inside: avoid;
+  }
+
+  .plain span {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .certs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .certs li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.8rem 1rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    break-inside: avoid;
+  }
+
+  .certs span {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .certs .in-progress {
+    border-color: var(--signal);
+  }
+
+  .certs .in-progress span {
+    color: var(--signal);
+    font-weight: 600;
+  }
+
+  @media print {
+    .screen-only {
+      display: none !important;
+    }
+
+    .cv-head {
+      padding-top: 0;
+    }
+
+    .block {
+      margin-top: 1.1rem;
+    }
+
+    .cv :global(.section-title) {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .job {
+      padding-block: 0.5rem;
+      margin-bottom: 0;
+    }
+
+    .job p,
+    .job ul {
+      font-size: 0.92rem;
+    }
+
+    .two {
+      grid-template-columns: 1fr 1fr;
+      gap: 0 1.5rem;
+    }
+
+    .plain li {
+      padding: 0.35rem 0;
+    }
+
+    .certs {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+
+    .certs li {
+      background: none;
+      padding: 0.5rem 0.7rem;
+    }
+  }
+</style>
