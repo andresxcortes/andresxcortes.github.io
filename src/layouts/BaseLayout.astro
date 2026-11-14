@@ -21,7 +21,7 @@ const nav = [
   { href: '/services/', label: 'Services' },
   { href: '/regulatory-coverage/', label: 'Coverage' },
   { href: '/portfolio/', label: 'Work' },
-  { href: '/about/', label: 'CV' },
+  { href: '/cv/', label: 'CV' },
   { href: '/contact/', label: 'Contact' },
 ];
 
@@ -199,5 +199,37 @@ const isCurrent = (href: string) =>
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
+  }
+
+  @media print {
+    :global(:root) {
+      --bg: #fff;
+      --ink: #121212;
+      --muted: #424242;
+      --card: #fff;
+      --tint: #fff;
+      --line: #b7b7b7;
+      --band: #fff;
+      --accent: #0053a5;
+      --accent-soft: #0053a5;
+      --signal: #61490c;
+    }
+
+    .site-header,
+    .site-footer {
+      display: none !important;
+    }
+
+    :global(html),
+    :global(body) {
+      background: #fff;
+      color: #121212;
+      font-size: 11pt;
+    }
+
+    :global(a) {
+      color: #0053a5;
+      text-decoration: none;
+    }
   }
 </style>

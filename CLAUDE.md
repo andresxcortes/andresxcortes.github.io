@@ -16,7 +16,7 @@ El diferenciador central de Andrés es la **experiencia regulatoria concreta en 
 - Sin CDNs externas para JS/CSS críticos: tipografías self-hosted vía **Fontsource** (paquete npm), no `<link>` a Google Fonts.
 
 ## Estructura de contenido
-- Páginas fijas: Home, Services, Regulatory Coverage, About, Contact.
+- Páginas fijas: Home, Services, Regulatory Coverage, CV (antes About; `/about` redirige), Contact.
 - **Content collection `case-studies`** para el portafolio (un `.md`/`.mdx` por caso). Ver el schema propuesto en `site-content/structure.md` y la plantilla en `site-content/case-studies/_template.md`.
 - Todo el copy del sitio va en **inglés** (mercado primario cross-border / LatAm-España). La versión en español queda para una fase posterior.
 

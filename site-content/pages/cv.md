@@ -1,9 +1,9 @@
 ---
-title: "About"
+title: "CV"
 description: "Information security and technical program leader — 10+ years across crypto, fintech, and global banking."
 ---
 
-# About
+# CV
 
 Information security and technical program leader with 10+ years delivering complex, regulated initiatives across crypto, fintech, and global banking.
 

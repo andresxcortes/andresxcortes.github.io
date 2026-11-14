@@ -8,7 +8,7 @@
 | `/regulatory-coverage` | `pages/regulatory-coverage.md` | La matriz AR/MX/BR — **página estrella** |
 | `/portfolio` | content collection | Índice de casos de estudio |
 | `/portfolio/[slug]` | content collection | Cada caso |
-| `/about` | `pages/about.md` | Bio, credenciales, certs, idiomas |
+| `/cv` | `pages/cv.md` | CV: perfil, experiencia, educación, certs, idiomas (`/about` redirige) |
 | `/contact` | `pages/contact.md` | Email + LinkedIn (sin teléfono) |
 
 Nav: Home · Services · Regulatory Coverage · Portfolio · About · Contact.
