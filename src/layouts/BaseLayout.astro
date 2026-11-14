@@ -11,9 +11,17 @@ interface Props {
   type?: 'website' | 'article';
   /** Path under public/ for the social preview image. */
   image?: string;
+  /** Page language (BCP-47). Drives <html lang> and og:locale. */
+  lang?: 'en' | 'es' | 'pt-BR';
+  /** Keep the page out of search indexes (e.g. 404). */
+  noindex?: boolean;
+  /** ISO dates for article pages. */
+  published?: Date;
 }
 
-const { title, description, type = 'website', image = '/og.png' } = Astro.props;
+const { title, description, type = 'website', image = '/og.png', lang = 'en', noindex = false, published } =
+  Astro.props;
+const ogLocale = { en: 'en_US', es: 'es_AR', 'pt-BR': 'pt_BR' }[lang];
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
 
@@ -31,7 +39,7 @@ const isCurrent = (href: string) =>
   href === '/' ? path === '/' : path === strip(href) || path.startsWith(href);
 ---
 
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,6 +54,7 @@ const isCurrent = (href: string) =>
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Andrés Cortés" />
+    {noindex && <meta name="robots" content="noindex" />}
 
     <!-- Open Graph (LinkedIn, Slack, WhatsApp...) -->
     <meta property="og:type" content={type} />
@@ -57,7 +66,9 @@ const isCurrent = (href: string) =>
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Andrés Cortés — Security & compliance · Latin America" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={ogLocale} />
+    {type === 'article' && published && <meta property="article:published_time" content={published.toISOString()} />}
+    {type === 'article' && <meta property="article:author" content="Andrés Cortés" />}
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
