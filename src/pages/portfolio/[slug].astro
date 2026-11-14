@@ -41,6 +41,18 @@ const others = relatedIds
   .map((id) => allEntries.find((c) => c.id === id))
   .filter((c): c is NonNullable<typeof c> => Boolean(c));
 const bodyLang = langCode(language);
+const pageUrl = new URL(`/portfolio/${entry.id}/`, Astro.site).href;
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: summary,
+  inLanguage: bodyLang,
+  mainEntityOfPage: pageUrl,
+  ...(date ? { datePublished: date.toISOString().slice(0, 10) } : {}),
+  author: { '@type': 'Person', name: 'Andrés Cortés', url: new URL('/', Astro.site).href },
+  publisher: { '@type': 'Person', name: 'Andrés Cortés' },
+};
 const langs = others.length
   ? [{ entry, current: true }, ...others.map((o) => ({ entry: o, current: false }))].sort(
       (x, y) => langOrder.indexOf(langCode(x.entry.data.language)) - langOrder.indexOf(langCode(y.entry.data.language)),
@@ -67,14 +79,27 @@ if (reader) {
   description={summary}
   type="article"
   image={entry.data.image}
+  lang={bodyLang}
+  published={date}
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+  {
+    others.length > 0 && (
+      <link slot="head" rel="alternate" hreflang={bodyLang} href={pageUrl} />
+    )
+  }
+  {
+    others.length > 0 && (
+      <link slot="head" rel="alternate" hreflang="x-default" href={new URL(`/portfolio/${langs.find((l) => langCode(l.entry.data.language) === 'en')?.entry.id ?? entry.id}/`, Astro.site).href} />
+    )
+  }
   {
     others.map((o) => (
       <link
         slot="head"
         rel="alternate"
         hreflang={langCode(o.data.language)}
-        href={`/portfolio/${o.id}/`}
+        href={new URL(`/portfolio/${o.id}/`, Astro.site).href}
       />
     ))
   }
