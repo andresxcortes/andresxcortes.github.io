@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroBand from '../components/HeroBand.astro';
 import Icon from '../components/Icon.astro';
+import { booking } from '../data/booking';
+const calls = [booking.quick, booking.intro, booking.scoping];
 ---
 
 <BaseLayout
@@ -16,7 +18,30 @@ import Icon from '../components/Icon.astro';
   </HeroBand>
 
   <div class="container">
+    <section class="section">
+      <h2 class="section-title">Book a video call</h2>
+      <p class="prose">Pick a slot that suits you; the confirmation includes a Google Meet link.</p>
+      <ul class="calls">
+        {
+          calls.map((c) => (
+            <li>
+              <a href={c.href} target="_blank" rel="noopener noreferrer">
+                <span class="mins">{c.minutes} min</span>
+                <span class="what">{c.label}</span>
+                <span class="note">{c.note}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="muted small">
+        Booking runs on Cal.com, which receives the details you enter. Please keep confidential
+        documents and client data out of the booking form.
+      </p>
+    </section>
+
     <section class="section section--end">
+      <h2 class="section-title">Or write to me</h2>
       <ul class="channels">
         <li>
           <span class="label"><Icon name="mail" /> Email</span>
@@ -59,6 +84,55 @@ import Icon from '../components/Icon.astro';
 </script>
 
 <style>
+  .calls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.25rem;
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .calls a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 1.1rem 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .calls a:hover {
+    border-color: var(--accent);
+  }
+
+  .mins {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+
+  .what {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .note {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .small {
+    font-size: 0.85rem;
+  }
+
   .copy {
     align-self: flex-start;
     font: inherit;
