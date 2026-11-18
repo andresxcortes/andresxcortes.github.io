@@ -62,6 +62,8 @@ A fixed-scope review of the product before it handles real user data, followed b
 
 The scanning uses open-source tools: Semgrep, Gitleaks, Trivy and OSV-Scanner. The value is in what follows the scan: findings ranked by what can happen and to whom, written in plain language; fixes delivered as pull requests; and a retest of the fixed items.
 
+Each finding is reported with its CWE weakness and the MITRE ATT&CK® techniques an attacker would use with it, so a new advisory can be read against the client's own findings. A free sample of that mapping is published as [AI-built apps: weaknesses mapped to CWE and MITRE ATT&CK®](/portfolio/ai-built-apps-attack-matrix/).
+
 Scans are machine-run and checked by a person. For a company that needs more, an engineer can also review how the findings chain together, the way an attacker would, inside a written scope. That is human work, and it is a separate engagement.
 
 ### 2. Compliance readiness
