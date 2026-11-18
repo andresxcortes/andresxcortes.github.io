@@ -3,7 +3,7 @@ title: "AI-built apps: weaknesses mapped to CWE and MITRE ATT&CK®"
 summary: "Twelve weaknesses that show up again and again in apps built with AI coding tools, each mapped to its CWE weakness, the MITRE ATT&CK® techniques an attacker would use, how to check for it, and how to fix it. A free sample of the full matrix."
 type: "resource"
 date: 2026-11-18
-featured: false
+featured: true
 draft: false
 ---
 
