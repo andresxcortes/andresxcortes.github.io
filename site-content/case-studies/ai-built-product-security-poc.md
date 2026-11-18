@@ -12,7 +12,7 @@ outcome: "A working design: the review method and rules of engagement are define
 status: "Proof of concept, updated 18 Nov 2026"
 date: 2026-11-16
 client_named: false
-featured: false
+featured: true
 draft: false
 ---
 
