@@ -62,6 +62,10 @@ Las apps del laboratorio crecen con la práctica. Cuando una revisión encuentra
 
 ### Cómo está armado el laboratorio
 
+![Arnés del laboratorio: los playbooks y los avisos públicos alimentan un runner, que consulta modelos a través de un gateway y ejecuta herramientas solo dentro de un sandbox aislado; la evidencia se vuelve registros de hallazgos, que se puntúan contra claves de respuesta y se revisan](/research/agent-lab/architecture-es.svg)
+
+El diseño deja el modelo intercambiable y todo lo demás fijo, para que un resultado se pueda atribuir al modelo y no a la configuración.
+
 - **Playbooks:** archivos versionados que dicen qué revisar, con un tope de gasto por corrida.
 - **Runner:** tres diseños comparados lado a lado: el framework abierto de evaluación del UK AI Security Institute, [Inspect Cyber](https://www.aisi.gov.uk/blog/inspect-cyber); un agente de programación general, corriendo sin supervisión; y un runner de playbooks mínimo, propio.
 - **Modelos:** cinco, de Anthropic, OpenAI, Google y un modelo de pesos abiertos, de distintos rangos de precio, detrás de un único gateway, para que cambiar de modelo sea un ajuste de configuración.
@@ -85,7 +89,7 @@ Dos apps del laboratorio quedan ocultas hasta la corrida final de puntaje, para 
 
 ## Qué no es esto
 
-- No es un producto ni está a la venta.
+- No es un producto ni está a la venta (todavía).
 - No es una carrera de benchmarks: los puntajes solo significan algo frente a la clave de respuestas de este laboratorio.
 - No es la explotación de ningún sistema que el laboratorio no controle.
 
