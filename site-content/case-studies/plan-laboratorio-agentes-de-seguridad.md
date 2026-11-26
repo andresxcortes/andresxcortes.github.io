@@ -62,6 +62,10 @@ Las apps del laboratorio crecen con la práctica. Cuando una revisión encuentra
 
 ### Cómo está armado el laboratorio
 
+![Arnés del laboratorio: los playbooks y los avisos públicos alimentan un runner, que consulta modelos a través de un gateway y ejecuta herramientas solo dentro de un sandbox aislado; la evidencia se vuelve registros de hallazgos, que se puntúan contra claves de respuesta y se revisan](/research/agent-lab/architecture-es.svg)
+
+El diseño deja el modelo intercambiable y todo lo demás fijo, para que un resultado se pueda atribuir al modelo y no a la configuración.
+
 - **Playbooks:** archivos versionados que dicen qué revisar, con un tope de gasto por corrida.
 - **Runner:** tres diseños comparados lado a lado: el framework abierto de evaluación del UK AI Security Institute, [Inspect Cyber](https://www.aisi.gov.uk/blog/inspect-cyber); un agente de programación general, corriendo sin supervisión; y un runner de playbooks mínimo, propio.
 - **Modelos:** cinco, de Anthropic, OpenAI, Google y un modelo de pesos abiertos, de distintos rangos de precio, detrás de un único gateway, para que cambiar de modelo sea un ajuste de configuración.
@@ -85,7 +89,7 @@ Dos apps del laboratorio quedan ocultas hasta la corrida final de puntaje, para 
 
 ## Qué no es esto
 
-- No es un producto ni está a la venta.
+- No es un producto ni está a la venta (todavía).
 - No es una carrera de benchmarks: los puntajes solo significan algo frente a la clave de respuestas de este laboratorio.
 - No es la explotación de ningún sistema que el laboratorio no controle.
 
@@ -99,7 +103,19 @@ Todavía no corrió nada. El laboratorio termina con uno de tres resultados, que
 
 Voy a publicar los resultados acá cuando termine el laboratorio, sea cual sea de los tres.
 
-Si construís productos con herramientas de IA y querés saber cómo se aplica esto al tuyo, [hablemos](/contact/).
+## Construyámoslo juntos
+
+El laboratorio sirve más con gente de afuera. Busco un grupo chico de socios de diseño que lo moldeen mientras corre.
+
+| Si sos | Podés | Recibís |
+| --- | --- | --- |
+| Fundador o equipo que construye con herramientas de IA, sobre todo si maneja pagos o datos personales | Contarme tu stack y los errores que te preocupan, para que las apps del laboratorio se parezcan a la tuya | Apps del laboratorio sobre tu stack y los resultados antes de que se publiquen |
+| Ingeniero o investigador de seguridad | Proponer debilidades para sembrar, revisar las claves de respuesta o cuestionar el puntaje | Crédito en los resultados publicados, si lo querés |
+| Alguien que construye o evalúa agentes de seguridad | Comparar notas sobre diseño de pruebas, modelos y sandboxing | Un intercambio de lo que funciona y lo que falla, antes de que cualquiera de los dos publique |
+
+Tu código nunca entra al laboratorio. Los socios aportan patrones, stacks y criterio; cada app del laboratorio se construye desde cero.
+
+Si te ves en alguno de estos casos, [escribime](/contact/) y contame cuál.
 
 ## Fuentes
 

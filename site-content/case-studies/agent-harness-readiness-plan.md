@@ -62,6 +62,10 @@ The lab apps grow with the practice. When a review finds a new kind of weakness 
 
 ### How the lab is built
 
+![Lab harness: playbooks and advisory feeds go to a runner, which calls models through a gateway and runs tools only inside an isolated sandbox; evidence becomes finding records, scored against answer keys and reviewed](/research/agent-lab/architecture-en.svg)
+
+The design keeps the model swappable and everything else fixed, so a result can be traced to the model rather than to the setup.
+
 - **Playbooks:** versioned files that say what to check, with a spending cap per run.
 - **Runner:** three designs compared side by side: the UK AI Security Institute's open evaluation framework, [Inspect Cyber](https://www.aisi.gov.uk/blog/inspect-cyber); a general coding agent run without supervision; and a thin playbook runner of my own.
 - **Models:** five, from Anthropic, OpenAI, Google and one open-weight model, across price tiers, behind one gateway so that changing the model is a setting.
@@ -85,7 +89,7 @@ Two lab apps stay hidden until the final scoring run, so that nothing is tuned o
 
 ## What this is not
 
-- Not a product, and not for sale.
+- Not a product, and not for sale (yet).
 - Not a benchmark race: scores only mean something against this lab's own answer key.
 - Not exploitation of any system the lab does not own.
 
@@ -99,7 +103,19 @@ Nothing has run yet. The lab ends with one of three results, decided by the scor
 
 I plan to publish the results here when the lab ends, whichever of the three it is.
 
-If you build products with AI tools and want to know how this applies to yours, [get in touch](/contact/).
+## Build it with me
+
+The lab is more useful with people outside it. I'm looking for a small group of design partners to shape it while it runs.
+
+| If you are | You could | You would get |
+| --- | --- | --- |
+| A founder or team shipping with AI coding tools, especially with payments or personal data | Tell me your stack and the mistakes you worry about, so the lab apps look like yours | Lab apps built on your stack, and the results before they are published |
+| A security engineer or researcher | Suggest weaknesses to plant, review the answer keys, or challenge the scoring | Credit on the published results, if you want it |
+| Building or evaluating security agents yourself | Compare notes on test design, models and sandboxing | An exchange of what works and what fails, before either of us publishes |
+
+Your code never enters the lab. Partners contribute patterns, stacks and judgment; every lab app is built from scratch.
+
+If any of these is you, [get in touch](/contact/) and say which one.
 
 ## Sources
 
