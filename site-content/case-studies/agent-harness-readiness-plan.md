@@ -103,7 +103,19 @@ Nothing has run yet. The lab ends with one of three results, decided by the scor
 
 I plan to publish the results here when the lab ends, whichever of the three it is.
 
-If you build products with AI tools and want to know how this applies to yours, [get in touch](/contact/).
+## Build it with me
+
+The lab is more useful with people outside it. I'm looking for a small group of design partners to shape it while it runs.
+
+| If you are | You could | You would get |
+| --- | --- | --- |
+| A founder or team shipping with AI coding tools, especially with payments or personal data | Tell me your stack and the mistakes you worry about, so the lab apps look like yours | Lab apps built on your stack, and the results before they are published |
+| A security engineer or researcher | Suggest weaknesses to plant, review the answer keys, or challenge the scoring | Credit on the published results, if you want it |
+| Building or evaluating security agents yourself | Compare notes on test design, models and sandboxing | An exchange of what works and what fails, before either of us publishes |
+
+Your code never enters the lab. Partners contribute patterns, stacks and judgment; every lab app is built from scratch.
+
+If any of these is you, [get in touch](/contact/) and say which one.
 
 ## Sources
 

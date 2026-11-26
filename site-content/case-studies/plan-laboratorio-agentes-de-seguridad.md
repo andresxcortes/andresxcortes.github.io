@@ -103,7 +103,19 @@ Todavía no corrió nada. El laboratorio termina con uno de tres resultados, que
 
 Voy a publicar los resultados acá cuando termine el laboratorio, sea cual sea de los tres.
 
-Si construís productos con herramientas de IA y querés saber cómo se aplica esto al tuyo, [hablemos](/contact/).
+## Construyámoslo juntos
+
+El laboratorio sirve más con gente de afuera. Busco un grupo chico de socios de diseño que lo moldeen mientras corre.
+
+| Si sos | Podés | Recibís |
+| --- | --- | --- |
+| Fundador o equipo que construye con herramientas de IA, sobre todo si maneja pagos o datos personales | Contarme tu stack y los errores que te preocupan, para que las apps del laboratorio se parezcan a la tuya | Apps del laboratorio sobre tu stack y los resultados antes de que se publiquen |
+| Ingeniero o investigador de seguridad | Proponer debilidades para sembrar, revisar las claves de respuesta o cuestionar el puntaje | Crédito en los resultados publicados, si lo querés |
+| Alguien que construye o evalúa agentes de seguridad | Comparar notas sobre diseño de pruebas, modelos y sandboxing | Un intercambio de lo que funciona y lo que falla, antes de que cualquiera de los dos publique |
+
+Tu código nunca entra al laboratorio. Los socios aportan patrones, stacks y criterio; cada app del laboratorio se construye desde cero.
+
+Si te ves en alguno de estos casos, [escribime](/contact/) y contame cuál.
 
 ## Fuentes
 
