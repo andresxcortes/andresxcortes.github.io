@@ -91,6 +91,8 @@ Where more than one AI model is used, each has a separate job, and the exchange 
 
 The runner would identify itself to the client's security team, with a fixed user agent, published source addresses and a readable log. The FBI lists outbound calls to AI model providers among ARTEX's indicators, so a defensive agent that does not announce itself could be mistaken for an attack.
 
+Before any agent runs on a client, it is measured in a lab first: [Testing security agents before they touch a client](/portfolio/agent-harness-readiness-plan/).
+
 Out of scope by design: training models on client code, agents that write their own detection tools, merging to production without a person, and any claim of real-time protection.
 
 ## Rules of engagement
