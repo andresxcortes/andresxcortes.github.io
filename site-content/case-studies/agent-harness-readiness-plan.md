@@ -12,7 +12,7 @@ outcome: "A published test design: six falsifiable questions, a scored test set 
 status: "Plan, published 26 Nov 2026"
 date: 2026-11-26
 client_named: false
-featured: false
+featured: true
 draft: false
 ---
 
